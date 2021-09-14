@@ -1,0 +1,7 @@
+version: '2'
+services:
+  sga-postgres:
+    extends:
+      file: postgres/postgres.yml
+      service: postgres
+    container_name: sga-postgres
