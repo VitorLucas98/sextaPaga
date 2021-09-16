@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+
+    <changeSet id="202109151732" author="francisco.doglas">
+
+        <createTable tableName="CARGO">
+
+            <column name="ID" type="int" autoIncrement="true"  remarks="id table cargo">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+   
+            <column name="DESCRICAO" type="varchar(50)" remarks="descricao do cargo">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
