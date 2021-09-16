@@ -4,4 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelogs/202109151732create_cargo.changelog.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>
+
