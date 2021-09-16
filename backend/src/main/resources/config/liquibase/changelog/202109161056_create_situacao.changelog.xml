@@ -5,6 +5,16 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <include file="config/liquibase/changelog/202109161056_create_situacao.changelog.xml" relativeToChangelogFile="false"/>
+
+    <changeSet id="202109161007" author="fellipe.almeida">
+        <createTable tableName="situacao">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="descricao" type="varchar(30)"/>
+
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
