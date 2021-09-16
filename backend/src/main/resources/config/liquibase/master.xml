@@ -5,8 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-
+    <include file="config/liquibase/changelog/202109161056_create_situacao.changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202109151732create_cargo.changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202109152000_create_motivo.changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
-
