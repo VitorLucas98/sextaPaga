@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Evento")
@@ -39,4 +41,6 @@ public class Evento implements Serializable {
     @JoinColumn(name = "id_motivo")
     private Motivo motivo;
 
+    @ManyToMany(mappedBy = "eventos")
+    private List<Usuario> usuarios = new ArrayList<>();
 }
