@@ -11,4 +11,6 @@
     <include file="config/liquibase/changelogs/202109161124_create_usuario.changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202109160937_create_evento.changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202109152124_create_usuario_evento.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109181834_insert_cargo.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109181845_insert_situacao.changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
