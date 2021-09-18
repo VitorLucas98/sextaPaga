@@ -4,17 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
 @Entity
-@Table(name = "Motivo")
+@Table(name = "motivo")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Motivo implements Serializable {
 
     @Id
@@ -22,6 +28,10 @@ public class Motivo implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "titulo")
+    private String titulo;
+
     @Column(name = "descricao")
     private String descricao;
 }
+
