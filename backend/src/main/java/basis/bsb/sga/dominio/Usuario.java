@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,9 @@ public class Usuario implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
+
     @Column(name = "cpf")
     private String cpf;
 
@@ -42,7 +46,7 @@ public class Usuario implements Serializable {
     @Column(name = "st_ativo")
     private boolean status;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_cargo")
     private Cargo cargo;
 

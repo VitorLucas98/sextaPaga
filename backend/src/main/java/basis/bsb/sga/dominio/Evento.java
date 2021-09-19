@@ -33,7 +33,7 @@ public class Evento implements Serializable {
     @Column(name = "valor")
     private Double valor;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_situacao")
     private Situacao situacao;
 

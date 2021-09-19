@@ -16,10 +16,10 @@
                 <constraints nullable="false"/>
             </column>
             <column name="cpf" type="char(11)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="email" type="varchar(50)">
-                <constraints nullable="false"/>
+                <constraints nullable="false" unique="true"/>
             </column>
             <column name="data_nascimento" type="date">
                 <constraints nullable="false"/>
