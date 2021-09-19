@@ -8,7 +8,7 @@
             <column name="NOME" type="varchar(50)">
                 <constraints  nullable="false"/>
             </column>
-            <column name="DATAEVENTO" type="DATE">
+            <column name="DATA_EVENTO" type="DATE">
                 <constraints nullable="false"/>
             </column>
             <column name="VALOR" type="numeric(10,2)">
