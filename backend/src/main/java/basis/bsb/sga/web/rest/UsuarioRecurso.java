@@ -41,12 +41,12 @@ public class UsuarioRecurso {
         return ResponseEntity.ok(service.editar(dto, id));
     }
 
-    @GetMapping(value = "/ativar/{id}")
+    @PutMapping(value = "/ativar/{id}")
     public ResponseEntity<UsuarioDTO> ativacaoUsuario(@PathVariable Long id){
         return ResponseEntity.ok(service.ativarStatus(id));
     }
 
-    @GetMapping(value = "/desativar/{id}")
+    @PutMapping(value = "/desativar/{id}")
     public ResponseEntity<UsuarioDTO> desativacaoUsuario(@PathVariable Long id){
         return ResponseEntity.ok(service.desativarStatus(id));
     }
