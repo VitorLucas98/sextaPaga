@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Evento")
+@Table(name = "evento")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Evento implements Serializable {
 
     @Id
@@ -33,13 +33,13 @@ public class Evento implements Serializable {
     @Column(name = "valor")
     private Double valor;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_situacao")
-    private Situacao situacao;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_motivo")
     private Motivo motivo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_situacao")
+    private Situacao situacao;
 
     @ManyToMany(mappedBy = "eventos")
     private List<Usuario> usuarios = new ArrayList<>();
