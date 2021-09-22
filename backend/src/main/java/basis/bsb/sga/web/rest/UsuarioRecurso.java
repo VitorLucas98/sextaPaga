@@ -4,6 +4,7 @@ package basis.bsb.sga.web.rest;
 import basis.bsb.sga.servicos.UsuarioServico;
 import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioListagemDTO;
+import basis.bsb.sga.servicos.filtros.UsuarioFiltro;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,11 @@ public class UsuarioRecurso {
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @GetMapping(value = "/filtro")
+    public ResponseEntity<List<UsuarioDTO>> buscarTodosFiltrado(UsuarioFiltro filtro){
+        return ResponseEntity.ok(service.buscarTodosFiltrado(filtro));
     }
 
     @PostMapping
