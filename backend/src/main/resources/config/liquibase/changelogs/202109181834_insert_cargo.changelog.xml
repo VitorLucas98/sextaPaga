@@ -4,12 +4,20 @@
         <insert tableName="cargo">
             <column  name="descricao"  value="Estágiario"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="202109212101-1" author="vitor.botelho">
         <insert tableName="cargo">
             <column  name="descricao"  value="Junior"/>
         </insert>
+    </changeSet>
+
+    <changeSet id="202109212102-2" author="vitor.botelho">
         <insert tableName="cargo">
             <column  name="descricao"  value="Pleno"/>
         </insert>
+    </changeSet>
+    <changeSet id="202109212103-3" author="vitor.botelho">
         <insert tableName="cargo">
             <column  name="descricao"  value="Senior"/>
         </insert>

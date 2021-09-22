@@ -24,7 +24,6 @@
             <column name="data_nascimento" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="foto" type="blob"/>
             <column name="id_cargo" type="bigint">
                 <constraints nullable="false"/>
             </column>

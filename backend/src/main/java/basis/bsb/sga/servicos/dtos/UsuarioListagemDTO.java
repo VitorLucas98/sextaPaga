@@ -17,5 +17,5 @@ public class UsuarioListagemDTO implements Serializable {
     private String nome;
     private String email;
     private boolean status;
-    private Long idCargo;
+    private SelectDTO cargo;
 }

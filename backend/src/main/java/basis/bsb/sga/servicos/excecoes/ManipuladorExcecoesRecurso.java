@@ -1,8 +1,6 @@
-package basis.bsb.sga.web.rest.excecoes;
+package basis.bsb.sga.servicos.excecoes;
 
 
-import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
-import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

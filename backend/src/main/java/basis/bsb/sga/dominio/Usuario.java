@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "USUARIO")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -38,10 +38,6 @@ public class Usuario implements Serializable {
 
     @Column(name = "telefone")
     private String telefone;
-
-    @Column(name = "foto")
-    @Lob
-    private byte[] foto;
 
     @Column(name = "st_ativo")
     private boolean status;
