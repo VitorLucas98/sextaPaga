@@ -5,6 +5,7 @@ import basis.bsb.sga.repositorios.EventoRepositorio;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
 import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
+import basis.bsb.sga.servicos.filtros.EventoFiltro;
 import basis.bsb.sga.servicos.mappers.EventoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class EventoServico {
     public EventoDTO buscarPorId(Long id){
         Evento eve = repositorio.findById(id).orElseThrow(() -> new ObjetoNaoEncontrado("Evento de id: "+id+" não existe"));
         return mapper.toDto(eve);
+    }
+
+    public List<EventoDTO> buscarTodosFiltrado(EventoFiltro filtro) {
+        return mapper.toDto(repositorio.findAll(filtro.filter()));
     }
 
     public List<EventoDTO> buscarTodos(){
@@ -53,5 +58,6 @@ public class EventoServico {
 
     public void adiarEvento(Long id){
     }
+
 
 }

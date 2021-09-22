@@ -6,6 +6,7 @@ import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioListagemDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
 import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
+import basis.bsb.sga.servicos.filtros.UsuarioFiltro;
 import basis.bsb.sga.servicos.mappers.UsuarioListagemMapper;
 import basis.bsb.sga.servicos.mappers.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,9 @@ public class UsuarioServico {
         return listagemMapper.toDto(repositorio.findAll());
     }
 
+    public List<UsuarioDTO> buscarTodosFiltrado(UsuarioFiltro filtro) {
+        return mapper.toDto(repositorio.findAll(filtro.filter()));
+    }
     public UsuarioDTO buscarPorId(Long id){
         Usuario usuario = repositorio.findById(id).orElseThrow(() -> new ObjetoNaoEncontrado("Usuario do id: "+id+" não encontrado !"));
         return mapper.toDto(usuario);
@@ -44,7 +48,7 @@ public class UsuarioServico {
     }
 
     public UsuarioDTO editar(UsuarioDTO dto, Long id){
-        dto.setId(id);
+        UsuarioDTO usuarioDTO = buscarPorId(id);
         Usuario usuario = mapper.toEntity(dto);
         usuario = repositorio.save(usuario);
         return mapper.toDto(usuario);
@@ -77,4 +81,6 @@ public class UsuarioServico {
         editar(dto, id);
         return dto;
     }
+
+
 }

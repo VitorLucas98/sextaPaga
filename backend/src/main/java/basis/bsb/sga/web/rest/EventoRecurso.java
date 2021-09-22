@@ -1,7 +1,9 @@
 package basis.bsb.sga.web.rest;
 
+import basis.bsb.sga.dominio.Evento;
 import basis.bsb.sga.servicos.EventoServico;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
+import basis.bsb.sga.servicos.filtros.EventoFiltro;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,11 @@ public class EventoRecurso {
     @GetMapping(value = "/{id}")
     public ResponseEntity<EventoDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(servico.buscarPorId(id));
+    }
+
+    @GetMapping(value = "/filtro")
+    public ResponseEntity<List<EventoDTO>> buscarTodosFiltrado(EventoFiltro filto){
+        return ResponseEntity.ok(servico.buscarTodosFiltrado(filto));
     }
 
     @GetMapping

@@ -6,7 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring", uses = {SitacaoSelectMapper.class})
+@Mapper(componentModel = "spring", uses = {SitacaoSelectMapper.class, UsuarioMapper.class})
 public interface EventoMapper extends EntityMapper<EventoDTO, Evento> {
 
 }

@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,4 +24,5 @@ public class EventoDTO implements Serializable {
     private Double valor;
     private MotivoDTO motivo;
     private SelectDTO situacao;
+    private List<SelectDTO> usuario = new ArrayList<>();
 }
