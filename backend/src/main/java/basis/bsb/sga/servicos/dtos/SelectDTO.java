@@ -1,4 +1,4 @@
-package basis.bsb.sga.web.rest.excecoes;
+package basis.bsb.sga.servicos.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,8 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessagemCampo implements Serializable {
+public class SelectDTO implements Serializable {
 
-    private String campo;
-    private String mensagem;
-
+    private Long value;
+    private String label;
 }

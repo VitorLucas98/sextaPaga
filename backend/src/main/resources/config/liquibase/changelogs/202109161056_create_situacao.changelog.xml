@@ -8,7 +8,7 @@
 
     <changeSet id="202109161007" author="fellipe.almeida">
         <createTable tableName="situacao">
-            <column name="id" type="bigint" autoIncrement="true">
+            <column name="id" type="bigint" autoIncrement="true" remarks="id table situacao">
                 <constraints primaryKey="true"/>
             </column>
 

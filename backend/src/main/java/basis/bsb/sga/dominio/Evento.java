@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "evento")
+@Table(name = "EVENTO")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -33,7 +33,7 @@ public class Evento implements Serializable {
     @Column(name = "valor")
     private Double valor;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_motivo")
     private Motivo motivo;
 

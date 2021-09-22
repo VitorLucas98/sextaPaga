@@ -17,7 +17,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "situacao")
+@Table(name = "SITUACAO")
 @Getter
 @Setter
 @AllArgsConstructor

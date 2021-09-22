@@ -1,4 +1,4 @@
-package basis.bsb.sga.web.rest.excecoes;
+package basis.bsb.sga.servicos.excecoes;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

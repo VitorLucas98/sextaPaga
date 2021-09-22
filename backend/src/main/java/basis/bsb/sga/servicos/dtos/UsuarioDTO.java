@@ -38,9 +38,7 @@ public class UsuarioDTO implements Serializable {
     @Size(max = 11, min = 9, message = "Telefone invalido")
     private String telefone;
 
-    private byte[] foto;
-
     private boolean status;
 
-    private Long idCargo;
+    private SelectDTO cargo;
 }

@@ -6,14 +6,7 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {SitacaoSelectMapper.class})
 public interface EventoMapper extends EntityMapper<EventoDTO, Evento> {
 
-    @Override
-    @Mapping(source = "idSituacao", target = "situacao.id")
-    Evento toEntity(EventoDTO dto);
-
-    @Override
-    @InheritInverseConfiguration
-    EventoDTO toDto(Evento entity);
 }
