@@ -41,6 +41,12 @@ public class Evento implements Serializable {
     @JoinColumn(name = "id_situacao")
     private Situacao situacao;
 
-    @ManyToMany(mappedBy = "eventos")
-    private List<Usuario> usuarios = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable( name = "usuario_evento",
+            joinColumns = {
+                    @JoinColumn(name = "id_evento")
+            }, inverseJoinColumns = {
+                    @JoinColumn(name = "id_usuario")
+    })
+    private List<Usuario> usuarios;
 }
