@@ -1,8 +1,11 @@
 package basis.bsb.sga.servicos;
 
 import basis.bsb.sga.dominio.Evento;
+import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.repositorios.EventoRepositorio;
+import basis.bsb.sga.repositorios.UsuarioRepositorio;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
+import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
 import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
 import basis.bsb.sga.servicos.filtros.EventoFiltro;
@@ -11,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service

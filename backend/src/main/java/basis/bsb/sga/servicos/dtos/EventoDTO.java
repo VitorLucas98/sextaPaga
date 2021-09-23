@@ -22,7 +22,7 @@ public class EventoDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataEvento;
     private Double valor;
-    private MotivoDTO motivo;
+    private SelectDTO motivo;
     private SelectDTO situacao;
-    private List<SelectDTO> usuario = new ArrayList<>();
+    private List<SelectDTO> usuarios;
 }

@@ -46,10 +46,4 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_cargo")
     private Cargo cargo;
 
-    @ManyToMany
-    @JoinTable(name = "usuario_evento",
-            joinColumns = @JoinColumn(name = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "id_evento"))
-    private List<Evento> eventos = new ArrayList<>();
-
 }
