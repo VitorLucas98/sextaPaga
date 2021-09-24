@@ -13,6 +13,8 @@ import java.util.List;
 public interface EventoRepositorio extends JpaRepository<Evento, Long> , JpaSpecificationExecutor<Evento> {
     boolean existsByDataEvento(LocalDate data);
 
-    @Query("SELECT obj FROM Evento obj ORDER BY obj.dataEvento")
-    List<Evento> findAllOrderData();
+    @Query("SELECT evento FROM Evento evento WHERE evento.dataEvento >=:data ORDER BY evento.dataEvento ASC")
+    List<Evento> findByDateAlter(LocalDate data);
+
+    Evento findByDataEvento(LocalDate data);
 }

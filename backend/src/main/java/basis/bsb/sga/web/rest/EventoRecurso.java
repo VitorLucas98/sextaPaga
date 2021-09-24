@@ -45,4 +45,15 @@ public class EventoRecurso {
     public ResponseEntity<EventoDTO> editar(@RequestBody @Valid EventoDTO dto, @PathVariable Long id){
         return ResponseEntity.ok(servico.editar(dto, id));
     }
+
+    @PutMapping(value = "/adiar/{id}")
+    public ResponseEntity<Void> adiarEvento(@PathVariable Long id){
+        servico.adiarEvento(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/trocarevento/{idPri}/{idSec}")
+    public ResponseEntity<List<EventoDTO>> trocarEvento(@PathVariable Long idPri,@PathVariable Long idSec){
+        return ResponseEntity.ok(servico.trocarEventos(idPri, idSec));
+    }
 }
