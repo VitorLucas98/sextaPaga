@@ -1,6 +1,7 @@
 package basis.bsb.sga.repositorios;
 
 import basis.bsb.sga.dominio.Evento;
+import basis.bsb.sga.dominio.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface EventoRepositorio extends JpaRepository<Evento, Long> , JpaSpec
     List<Evento> findByDateAlter(LocalDate data);
 
     Evento findByDataEvento(LocalDate data);
+
+    List<Evento> getAllByUsuarios (Usuario usuario);
 }
