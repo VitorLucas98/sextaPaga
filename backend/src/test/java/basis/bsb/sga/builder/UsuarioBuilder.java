@@ -24,7 +24,7 @@ public class UsuarioBuilder extends ConstrutorDeEntidade<Usuario> {
     @Override
     protected Usuario construirEntidade() throws ParseException {
         Usuario usuario = new Usuario();
-        usuario.setCpf("077.862.188-90");
+        usuario.setCpf("99672324049");
         usuario.setEmail("alanT@gmail.com");
         usuario.setNome("Alan Turing");
         usuario.setStatus(true);
@@ -37,7 +37,7 @@ public class UsuarioBuilder extends ConstrutorDeEntidade<Usuario> {
     }
 
     @Override
-    protected Usuario persistir(Usuario entidade) {
+        protected Usuario persistir(Usuario entidade) {
         return usuarioRepositorio.save(entidade);
     }
 
@@ -51,9 +51,19 @@ public class UsuarioBuilder extends ConstrutorDeEntidade<Usuario> {
         return usuarioRepositorio.findById(id).get();
     }
 
+    @Override
+    public Usuario construir() throws ParseException {
+        return super.construir();
+    }
+
     public UsuarioDTO construirDTO() throws ParseException {
+        return usuarioMapper.toDto(construir());
+    }
+
+    public UsuarioDTO construirObjDTO() throws ParseException{
         return usuarioMapper.toDto(construirEntidade());
     }
+
     public void delete() {
         usuarioRepositorio.deleteAll();
     }
