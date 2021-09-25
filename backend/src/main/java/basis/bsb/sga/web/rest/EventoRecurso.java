@@ -30,11 +30,6 @@ public class EventoRecurso {
         return ResponseEntity.ok(servico.buscarTodosFiltrado(filto));
     }
 
-    @GetMapping
-    public ResponseEntity<List<EventoDTO>> buscarTodos(){
-        return ResponseEntity.ok(servico.buscarTodos());
-    }
-
     @PostMapping
     public ResponseEntity<EventoDTO> inserir(@RequestBody @Valid EventoDTO dto){
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(dto.getId()).toUri();

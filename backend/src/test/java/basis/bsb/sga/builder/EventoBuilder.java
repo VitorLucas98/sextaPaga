@@ -61,7 +61,7 @@ public class EventoBuilder extends ConstrutorDeEntidade<Evento> {
         return super.construir();
     }
 
-    @Override
+
     public EventoDTO construirDTO() throws ParseException {
         return eventoMapper.toDto(construir());
     }

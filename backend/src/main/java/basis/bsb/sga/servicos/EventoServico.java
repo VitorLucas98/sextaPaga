@@ -37,10 +37,6 @@ public class EventoServico {
         return mapper.toDto(repositorio.findAll(filtro.filter()));
     }
 
-    public List<EventoDTO> buscarTodos() {
-        return mapper.toDto(repositorio.findAll());
-    }
-
     public EventoDTO inserir(EventoDTO dto) {
         validaDataEvento(dto);
         Evento entity = mapper.toEntity(dto);
