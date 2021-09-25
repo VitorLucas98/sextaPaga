@@ -21,11 +21,6 @@ public class UsuarioRecurso {
 
     private final UsuarioServico service;
 
-    @GetMapping
-    public ResponseEntity<List<UsuarioListagemDTO>> buscarTodos(){
-        return ResponseEntity.ok(service.buscarTodos());
-    }
-
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
