@@ -1,6 +1,7 @@
 package basis.bsb.sga.servicos;
 
 import basis.bsb.sga.dominio.Evento;
+import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.repositorios.EventoRepositorio;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -71,6 +73,21 @@ public class EventoServico {
         ev1.setDataEvento(ev2.getDataEvento());
         ev2.setDataEvento(dataAux);
         return mapper.toDto(repositorio.saveAll(Arrays.asList(ev1, ev2)));
+    }
+
+    public void checkUsuario(Usuario usuario){
+        List<Evento> eventos = repositorio.getAllByUsuarios(usuario);
+        List<Usuario> usuarios = new ArrayList<>();
+        for (Evento evento : eventos){
+            usuarios = evento.getUsuarios();
+            if (usuarios.size() == 1){
+                repositorio.delete(evento);
+            }else {
+                usuarios.remove(usuario);
+                evento.setUsuarios(usuarios);
+                repositorio.save(evento);
+            }
+        }
     }
 
     private void validaDataEvento(EventoDTO dto) {

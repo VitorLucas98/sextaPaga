@@ -24,6 +24,8 @@ public class UsuarioServico {
 
     private final UsuarioListagemMapper listagemMapper;
 
+    private final EventoServico eventoServico;
+
     private final UsuarioMapper mapper;
 
     public List<UsuarioListagemDTO> buscarTodos(){
@@ -77,6 +79,7 @@ public class UsuarioServico {
 
     public UsuarioDTO desativarStatus(Long id){
         UsuarioDTO dto = buscarPorId(id);
+        eventoServico.checkUsuario(mapper.toEntity(dto));
         dto.setStatus(false);
         editar(dto, id);
         return dto;
