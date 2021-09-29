@@ -27,7 +27,7 @@ public class UsuarioRecurso {
     }
 
     @GetMapping(value = "/filtro")
-    public ResponseEntity<List<UsuarioDTO>> buscarTodosFiltrado(UsuarioFiltro filtro){
+    public ResponseEntity<List<UsuarioListagemDTO>> buscarTodosFiltrado(UsuarioFiltro filtro){
         return ResponseEntity.ok(service.buscarTodosFiltrado(filtro));
     }
 

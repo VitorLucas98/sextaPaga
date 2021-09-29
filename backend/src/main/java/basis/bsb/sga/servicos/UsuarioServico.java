@@ -28,12 +28,8 @@ public class UsuarioServico {
 
     private final UsuarioMapper mapper;
 
-    public List<UsuarioListagemDTO> buscarTodos(){
-        return listagemMapper.toDto(repositorio.findAll());
-    }
-
-    public List<UsuarioDTO> buscarTodosFiltrado(UsuarioFiltro filtro) {
-        return mapper.toDto(repositorio.findAll(filtro.filter()));
+    public List<UsuarioListagemDTO> buscarTodosFiltrado(UsuarioFiltro filtro) {
+        return listagemMapper.toDto(repositorio.findAll(filtro.filter()));
     }
     public UsuarioDTO buscarPorId(Long id){
         Usuario usuario = repositorio.findById(id).orElseThrow(() -> new ObjetoNaoEncontrado("Usuario do id: "+id+" não encontrado !"));
