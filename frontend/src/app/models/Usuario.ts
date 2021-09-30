@@ -10,3 +10,11 @@ export class Usuario {
     status: boolean;
     cargo: Cargo;
 }
+
+export class UsuarioListagem{
+    id?: number;
+    nome: string;
+    email: string;
+    status: boolean;
+    cargo: Cargo;
+}

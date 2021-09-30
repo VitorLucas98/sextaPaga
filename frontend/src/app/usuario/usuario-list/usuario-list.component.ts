@@ -1,4 +1,6 @@
+import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioListagem } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-usuario-list',
@@ -7,24 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioListComponent implements OnInit {
 
-  public cars: Car[] = [
-    new Car('1', 2020, 'Fiat', 'Red'),
-    new Car('2', 2020, 'Ford', 'Blue'),
-    new Car('3', 2021, 'Fiat', 'Red'),
-  ];
+  usuarios: UsuarioListagem[] = [];
 
-  constructor() { }
+  constructor(private service : UsuarioService) { }
 
   ngOnInit(): void {
+    this.buscarTodos();
   }
 
-}
+  buscarTodos(): void{
+    this.service.buscarTodos().subscribe( res => {
+      this.usuarios = res;
+      console.log(this.usuarios);
+    })
+  }
 
-class Car {
-  constructor(
-    public vin: string,
-    public year: number,
-    public brand: string,
-    public color: string
-  ) {}
 }
