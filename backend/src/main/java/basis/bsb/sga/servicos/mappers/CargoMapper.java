@@ -6,4 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface CargoMapper extends EntityMapper<CargoDTO, Cargo>{
+
+
 }
