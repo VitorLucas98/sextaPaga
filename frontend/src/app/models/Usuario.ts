@@ -1,3 +1,5 @@
+import { Cargo } from "./Cargo";
+
 export class Usuario {
     id?: number;
     nome: string;
@@ -6,5 +8,5 @@ export class Usuario {
     cpf: string;
     telefone: string;
     status: boolean;
-    cargo: number;
+    cargo: Cargo;
 }

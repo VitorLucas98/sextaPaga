@@ -14,15 +14,13 @@ import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-ba
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
 import {TableModule} from 'primeng/table';
-import { UsuarioListComponent } from './view/components/usuario/usuario-list/usuario-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         AppTopbarComponent,
         AppFooterComponent,
-        DiarioErrosComponent,
-        UsuarioListComponent
+        DiarioErrosComponent
     ],
     imports: [
         BlockUIModule.forRoot({
