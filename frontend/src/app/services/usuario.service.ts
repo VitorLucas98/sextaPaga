@@ -1,4 +1,4 @@
-import { Usuario } from './../models/Usuario';
+import { Usuario, UsuarioListagem } from './../models/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,9 +12,9 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  buscarTodos(): Observable<Usuario[]> {
+  buscarTodos(): Observable<UsuarioListagem[]> {
     const url = `${this.baseUrl}/filtro`;
-    return this.http.get<Usuario[]>(url);
+    return this.http.get<UsuarioListagem[]>(url);
   }
 
   buscarPorId(id: any): Observable<Usuario> {
