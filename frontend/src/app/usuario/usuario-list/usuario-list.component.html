@@ -1,19 +1,62 @@
-<p-table [value]="usuarios">
+<div class="create">
+    <p-button (click)="cadastrar()" class="btn-create" label="CRIAR NOVO USUÁRIO"></p-button>
+</div>
+
+<p-table #dt [value]="usuarios" dataKey="id" styleClass="ui-table-customers" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuários"
+    [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
+    <ng-template pTemplate="caption">
+        LISTA DE USUÁRIOS
+        <div class="ui-table-globalfilter-container">
+            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Pesquisar" />
+        </div>
+    </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Cargo</th>
+            <th colspan="2" pSortableColumn="name">NOME
+                <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th colspan="3" pSortableColumn="country.name">EMAIL
+                <p-sortIcon field="country.name"></p-sortIcon>
+            </th>
+            <th colspan="2" pSortableColumn="cargo.label">CARGO
+                <p-sortIcon field="representative.name"></p-sortIcon>
+            </th>
+            <th colspan="2" pSortableColumn="status">STATUS
+                <p-sortIcon field="status"></p-sortIcon>
+            </th>
+            <th colspan="2" pSortableColumn="acoes">AÇÕES
+                <p-sortIcon field="acoes"></p-sortIcon>
+            </th>
         </tr>
+
     </ng-template>
     <ng-template pTemplate="body" let-usuario>
+        <tr class="ui-selectable-row">
+            <td colspan="2">
+                {{usuario.nome}}
+            </td>
+            <td colspan="3">
+                <span style="vertical-align: middle; margin-left: .5em">{{usuario.email}}</span>
+            </td>
+            <td colspan="2">
+                {{usuario.cargo.label}}
+            </td>
+            <td colspan="2">
+                {{usuario.status}}
+            </td>
+            <td colspan="2">
+                <a>
+                    <i id="edit" class="material-icons">edit</i>
+                </a>
+                <a>
+                    <i id="delete" class="material-icons">visibility</i>
+                </a>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
         <tr>
-            <td>{{usuario.id}}</td>
-            <td>{{usuario.nome}}</td>
-            <td>{{usuario.email}}</td>
-            <td>{{usuario.cargo.label}}</td>
-
+            <td colspan="8" style="text-align:left">.</td>
         </tr>
     </ng-template>
 </p-table>
