@@ -5,8 +5,12 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
     http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-
-    <include file="config/liquibase/changelogs/202109151732create_cargo.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109161056_create_situacao.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109151732_create_cargo.changelog.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelogs/202109152000_create_motivo.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109161124_create_usuario.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109160937_create_evento.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109152124_create_usuario_evento.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109181834_insert_cargo.changelog.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelogs/202109181845_insert_situacao.changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
-

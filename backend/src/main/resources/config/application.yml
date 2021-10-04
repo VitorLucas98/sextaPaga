@@ -6,4 +6,4 @@ spring:
     password: SGA
   liquibase:
     change-log: classpath:/config/liquibase/master.xml
-    drop-first: true
+#    drop-first: true

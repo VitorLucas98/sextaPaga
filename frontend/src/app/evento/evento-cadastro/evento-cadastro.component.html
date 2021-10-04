@@ -1,0 +1,53 @@
+
+<div class="form-container">
+    <form action="">
+        <h1 class="first">CADASTRAR EVENTO</h1>
+
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">create</i></span>
+                    <input type="text" pInputText placeholder="Nome do Evento">
+                </div>
+            </div>
+          
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data do Evento</span>
+                    <p-calendar [(ngModel)]="date5" [disabledDates]="invalidDates" [disabledDays]="[0,6]" [readonlyInput]="true"></p-calendar>
+                </div>
+            </div>    
+            
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">attach_money</i></span>
+                    <input type="text" pInputText placeholder="Valor">
+                </div>
+            </div> 
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">insert_comment</i>Motivo</span>
+                    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" [filter]="true"></p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">work</i>Situação</span>
+                    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" [filter]="true"></p-dropdown>
+               
+                </div>
+            </div>         
+                    
+           <div class="ui-g-12">
+                <div class="ui-g-2 ui-g-offset-3">
+                    <button pButton type="button" label="Criar"></button>
+                </div>
+                <div class="ui-g-2">
+                    <button pButton type="button" label="Cancelar" class="ui-button-danger"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
