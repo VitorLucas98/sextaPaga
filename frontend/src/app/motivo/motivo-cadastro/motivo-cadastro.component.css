@@ -1,0 +1,20 @@
+::ng-deep .ui-datepicker-group,
+ ::ng-deep .ui-timepicker {
+    width: 20vw;
+}
+
+.input-content {
+    padding: 1%;
+}
+
+h1 {
+    text-align: center;
+}
+
+.input-content-2 {
+    width: 30%;
+}
+
+.input-content-group {
+    display: block;
+}
