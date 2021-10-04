@@ -1,5 +1,5 @@
+<p-toast></p-toast>
 <div class="form-container">
-    <p-toast position="top-right"></p-toast>
     <form [formGroup]="usuarioForm">
         <h1 class="first">CADASTRO DE USUÁRIO</h1>
         <div class="ui-g ui-fluid">
@@ -44,7 +44,7 @@
 
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton type="button" (click)="criar()" label="Criar"></button>
+                    <button pButton (click)="this.criar()" label="Criar"></button>
                 </div>
                 <div class="ui-g-2">
                     <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-danger"></button>

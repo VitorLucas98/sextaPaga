@@ -20,7 +20,8 @@ export class UsuarioCadastroComponent implements OnInit {
 
   cargos: SelectItem[] = [];
 
-  constructor(private service: UsuarioService,
+  constructor(
+    private service: UsuarioService,
     private router: Router,
     private cargoService: CargoService,
     private mensagem: MessageService) {
@@ -72,12 +73,19 @@ export class UsuarioCadastroComponent implements OnInit {
   public criar(): void {
     this.formatarData();
     this.formataCargo();
+
     if(!this.usuarioForm.valid) {
-      this.usuarioForm.
+      this.mensagem.add({ severity: 'error', summary: MessagemUtils.TITULO_DADOS_INVALIDOS, detail: MessagemUtils.MENSAGEM_ERRO_PREENCHIMENTO})
+      return;
     }
-    this.service.inserir(this.usuarioForm.value).subscribe(res => {
+    this.salvarUsuario();
+  }
+
+  public salvarUsuario(): void {
+    this.service.inserir(this.usuarioForm.value).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
       this.router.navigateByUrl('usuarios')
     })
   }
+
 }
