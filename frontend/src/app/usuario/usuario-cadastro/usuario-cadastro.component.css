@@ -18,3 +18,12 @@ h1 {
 .input-content-group {
     display: block;
 }
+
+span {
+    display: flex;
+    align-items: center;
+}
+
+i {
+    margin-right: .5rem;
+}

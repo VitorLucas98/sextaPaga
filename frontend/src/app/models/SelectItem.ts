@@ -1,4 +1,4 @@
-export class Cargo{
+export class SelectItem{
     value: number;
     label: string;
 }

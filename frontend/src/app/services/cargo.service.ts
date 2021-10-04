@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cargo } from '../models/Cargo';
+import { SelectItem } from '../models/SelectItem';
 
 
 @Injectable({
@@ -13,8 +13,8 @@ export class CargoService {
 
   baseUrl = 'http://localhost:8080/api/cargos';
 
-  buscarTodos(): Observable<Cargo[]> {
-    return this.http.get<Cargo[]>(this.baseUrl);
+  buscarTodos(): Observable<SelectItem[]> {
+    return this.http.get<SelectItem[]>(this.baseUrl);
   }
 
 }

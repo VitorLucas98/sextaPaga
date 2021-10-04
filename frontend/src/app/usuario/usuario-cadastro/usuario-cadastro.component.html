@@ -1,52 +1,53 @@
 <div class="form-container">
-    <form action="">
+    <p-toast position="top-right"></p-toast>
+    <form [formGroup]="usuarioForm">
         <h1 class="first">CADASTRO DE USUÁRIO</h1>
         <div class="ui-g ui-fluid">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
-                    <span class="ui-inputgroup-addon"><i class="material-icons">perm_identity</i></span>
-                    <input type="text" pInputText placeholder="Nome">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">perm_identity</i>Nome</span>
+                    <input formControlName="nome" name="nome" type="text" pInputText>
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
-                    <span class="ui-inputgroup-addon"><i class="material-icons">email</i></span>
-                    <input type="text" pInputText placeholder="Email">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">email</i>Email</span>
+                    <input type="text" formControlName='email' name="email" pInputText>
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
-                    <span class="ui-inputgroup-addon"><i class="material-icons">assignment_ind</i></span>
-                    <input type="text" pInputText placeholder="CPF">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">assignment_ind</i>CPF</span>
+                    <p-inputMask mask="999.999.999-99" name="cpf" [unmask]=true formControlName='cpf'></p-inputMask>
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
-                    <span class="ui-inputgroup-addon"><i class="material-icons">local_phone</i></span>
-                    <input type="text" pInputText placeholder="Telefone">
+                    <span class="ui-inputgroup-addon"><i class="material-icons">local_phone</i>Telefone</span>
+                    <p-inputMask mask="(99)99999-9999" name="telefone" [unmask]=true formControlName='telefone'></p-inputMask>
                 </div>
             </div>
 
             <div class="ui-g-12">
-                <div class="ui-g-3  ui-g-offset-3">
+                <div class="ui-g-3 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">work</i>Cargo</span>
-                    <p-dropdown [options]="cities" [(ngModel)]="selectedCity" [filter]="true"></p-dropdown>
+                    <p-dropdown [options]="cargos" [filter]="true" formControlName='cargo'></p-dropdown>
                 </div>
                 <div class="ui-g-3">
                     <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data de Nascimento</span>
-                    <p-calendar [(ngModel)]="date5" [disabledDates]="invalidDates" [disabledDays]="[0,6]" [readonlyInput]="true"></p-calendar>
+                    <p-calendar [disabledDates]="" [disabledDays]="[0,6]" formControlName='dataNascimento' [readonlyInput]="true"></p-calendar>
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton type="button" label="Criar"></button>
+                    <button pButton type="button" (click)="criar()" label="Criar"></button>
                 </div>
                 <div class="ui-g-2">
-                    <button pButton type="button" label="Cancelar" class="ui-button-danger"></button>
+                    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-danger"></button>
                 </div>
             </div>
         </div>

@@ -1,9 +1,11 @@
 import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppRoutingUsuarioModule } from './app-routing-usuario.module';
 import { SharedModule } from '../shared/shared.module';
 import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.component';
+import { RoutingUsuarioModule } from './routing-usuario.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -11,8 +13,9 @@ import { UsuarioCadastroComponent } from './usuario-cadastro/usuario-cadastro.co
   declarations: [UsuarioListComponent, UsuarioCadastroComponent],
   imports: [
     CommonModule,
-    AppRoutingUsuarioModule,
-    SharedModule
+    RoutingUsuarioModule,
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class UsuarioModule { }

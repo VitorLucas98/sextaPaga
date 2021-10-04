@@ -7,7 +7,7 @@ import { UsuarioListComponent } from './usuario-list/usuario-list.component';
 
 const routes: Routes = [
     { path: '', component: UsuarioListComponent },
-    {path: 'criacao', component: UsuarioCadastroComponent, data: { breadcrumb: 'criacao'}}
+    {path: 'criar', component: UsuarioCadastroComponent, data: { breadcrumb: 'criar'}},
 
 ];
 
@@ -17,4 +17,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingUsuarioModule { }
+export class RoutingUsuarioModule { }
