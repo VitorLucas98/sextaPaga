@@ -13,7 +13,9 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { TableModule } from 'primeng/table';
+
+import {TableModule} from 'primeng/table';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { TableModule } from 'primeng/table';
         AppComponent,
         AppTopbarComponent,
         AppFooterComponent,
-        DiarioErrosComponent
+        DiarioErrosComponent,
+        HomeComponent
     ],
     imports: [
         BlockUIModule.forRoot({
