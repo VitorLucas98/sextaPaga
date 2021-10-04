@@ -1,5 +1,5 @@
 import { Motivo } from "./Motivo";
-import { Situacao } from "./Situacao";
+import { SelectItem } from "./SelectItem";
 import { Usuario } from "./Usuario";
 
 export class Evento{
@@ -8,6 +8,6 @@ export class Evento{
     dataEvento: string;
     valor: number;
     motivo: Motivo; 
-    situacao: Situacao;
+    situacao: SelectItem;
     usuarios: Usuario[];
 }

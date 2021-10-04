@@ -1,4 +1,4 @@
-import { Cargo } from "./Cargo";
+import { SelectItem } from "./SelectItem";
 
 export class Usuario {
     id?: number;
@@ -8,7 +8,7 @@ export class Usuario {
     cpf: string;
     telefone: string;
     status: boolean;
-    cargo: Cargo;
+    cargo: SelectItem;
 }
 
 export class UsuarioListagem{
@@ -16,5 +16,5 @@ export class UsuarioListagem{
     nome: string;
     email: string;
     status: boolean;
-    cargo: Cargo;
+    cargo: SelectItem;
 }

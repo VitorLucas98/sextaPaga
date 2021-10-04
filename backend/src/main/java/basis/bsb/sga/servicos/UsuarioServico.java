@@ -41,7 +41,7 @@ public class UsuarioServico {
         validadorEmail(dto);
         dto.setStatus(true);
         Usuario usuario = mapper.toEntity(dto);
-        usuario = repositorio.save(usuario);
+        usuario = repositorio.saveAndFlush(usuario);
         return mapper.toDto(usuario);
     }
 
@@ -53,15 +53,13 @@ public class UsuarioServico {
     }
 
     private void validadorEmail(UsuarioDTO dto){
-        boolean validacao = repositorio.existsByEmail(dto.getEmail());
-        if (validacao){
+        if (repositorio.existsByEmail(dto.getEmail())){
             throw new ValidadorExcecoes("Email já cadastrado");
         }
     }
 
     private void validadorCPF(UsuarioDTO dto){
-        boolean validacao = repositorio.existsByCpf(dto.getCpf());
-        if (validacao){
+        if (repositorio.existsByCpf(dto.getCpf())){
             throw new ValidadorExcecoes("CPF já cadastrado");
         }
     }
@@ -80,6 +78,5 @@ public class UsuarioServico {
         editar(dto, id);
         return dto;
     }
-
 
 }

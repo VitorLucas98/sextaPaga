@@ -19,13 +19,12 @@ export class UsuarioListComponent implements OnInit {
   }
 
   cadastrar(): void{
-    this.router.navigateByUrl('usuarios/criacao')
+    this.router.navigateByUrl('usuarios/criar')
   }
 
   buscarTodos(): void{
     this.service.buscarTodos().subscribe( res => {
       this.usuarios = res;
-      console.log(this.usuarios);
     })
   }
 
