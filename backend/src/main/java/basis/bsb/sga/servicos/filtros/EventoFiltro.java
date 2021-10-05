@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.filtros;
 
+
 import basis.bsb.sga.dominio.Evento;
 import basis.bsb.sga.dominio.Evento_;
 import basis.bsb.sga.dominio.Motivo_;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.Specification;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -49,8 +49,10 @@ public class EventoFiltro implements EntityFiltro<Evento>{
             predicates.add(cb.like(root.get(Evento_.nome), "%"+nome+"%"));
         }
 
-        if (valor != null) predicates.add(cb.equal(root.get(Evento_.VALOR), valor));
+        if (valor != null){
+            predicates.add(cb.equal(root.get(Evento_.VALOR), valor));
 
+        }
         if (motivo != null){
             predicates.add(cb.like(root.join("motivo").get(Motivo_.TITULO), "%"+motivo+"%"));
         }
