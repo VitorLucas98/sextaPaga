@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MotivoRoutingModule } from './motivo-routing.module';
 import { MotivoCadastroComponent } from './motivo-cadastro/motivo-cadastro.component';
 import { MotivoListComponent } from './motivo-list/motivo-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MotivoListComponent } from './motivo-list/motivo-list.component';
   imports: [
     CommonModule,
     MotivoRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class MotivoModule { }

@@ -1,3 +1,6 @@
+import { MotivoModule } from './../../motivo/motivo.module';
+import { MotivoService } from './../../services/motivo.service';
+import { Motivo } from './../../models/Motivo';
 import { EventoService } from './../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import { EventoListagem } from '../../models/Evento';
@@ -14,6 +17,8 @@ export class EventoListComponent implements OnInit {
 
 
   constructor(private service : EventoService, private router: Router) { }
+
+
 
   ngOnInit(): void {
     this.buscarTodos();
