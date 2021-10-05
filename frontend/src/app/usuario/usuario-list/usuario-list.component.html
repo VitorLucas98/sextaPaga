@@ -42,21 +42,31 @@
                 {{usuario.cargo.label}}
             </td>
             <td colspan="2">
-                {{usuario.status}}
+                {{ usuario.status |ativoInativo}}
             </td>
             <td colspan="2">
-                <a>
-                    <i id="edit" class="material-icons">edit</i>
-                </a>
-                <a>
-                    <i id="delete" class="material-icons">visibility</i>
-                </a>
+                <div class="btn-acoes">
+                    <a (click)="editar(usuario.id)">
+                        <i id=" edit " class="material-icons">edit</i>
+                    </a>
+                    <a (click)="visualizar(usuario.id)">
+                        <i id="view " class="material-icons">visibility</i>
+                    </a>
+                </div>
             </td>
         </tr>
     </ng-template>
-    <ng-template pTemplate="emptymessage">
+    <ng-template pTemplate="emptymessage ">
         <tr>
-            <td colspan="8" style="text-align:left">.</td>
+            <td colspan="8 " style="text-align:left ">.</td>
         </tr>
     </ng-template>
 </p-table>
+
+<p-dialog [(visible)]="formEdicao">
+    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]='1' *ngIf="formEdicao"></app-usuario-cadastro>
+</p-dialog>
+
+<p-dialog [(visible)]="formView">
+    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]='3' *ngIf="formView"></app-usuario-cadastro>
+</p-dialog>

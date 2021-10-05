@@ -1,7 +1,8 @@
 import { UsuarioService } from './../../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { UsuarioListagem } from 'src/app/models/Usuario';
+import { Usuario, UsuarioListagem } from 'src/app/models/Usuario';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-list',
@@ -11,21 +12,38 @@ import { Router } from '@angular/router';
 export class UsuarioListComponent implements OnInit {
 
   usuarios: UsuarioListagem[] = [];
+  usuarioBuscado: Usuario;
+  formEdicao: boolean = false;
+  formView: boolean = false;
 
-  constructor(private service : UsuarioService, private router: Router) { }
+  constructor(private service: UsuarioService, private router: Router) { }
 
   ngOnInit(): void {
     this.buscarTodos();
   }
 
-  cadastrar(): void{
+  cadastrar(): void {
     this.router.navigateByUrl('usuarios/criar')
   }
 
-  buscarTodos(): void{
-    this.service.buscarTodos().subscribe( res => {
+  buscarTodos(): void {
+    this.service.buscarTodos().subscribe(res => {
       this.usuarios = res;
     })
   }
 
+  public visualizar(usuarioId: number): void {
+    this.service.buscarPorId(usuarioId).subscribe(res => {
+      this.usuarioBuscado = res
+      this.formView = true;
+    })
+
+  }
+
+  public editar(usuarioId: number): void {
+    this.service.buscarPorId(usuarioId).subscribe(res => {
+      this.usuarioBuscado = res
+      this.formEdicao = true;
+    })
+  }
 }

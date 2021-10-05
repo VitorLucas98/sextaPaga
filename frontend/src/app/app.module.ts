@@ -18,13 +18,16 @@ import {TableModule} from 'primeng/table';
 import { HomeComponent } from './components/home/home.component';
 
 
+
+
 @NgModule({
     declarations: [
         AppComponent,
         AppTopbarComponent,
         AppFooterComponent,
         DiarioErrosComponent,
-        HomeComponent
+        HomeComponent,
+        
     ],
     imports: [
         BlockUIModule.forRoot({

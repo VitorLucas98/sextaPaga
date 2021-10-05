@@ -18,6 +18,6 @@ export class EventoListagem{
     dataEvento: string;
     valor: number;
     motivo: Motivo; 
-    situacao: Situacao;
+    situacao: SelectItem;
     usuarios: Usuario[];
 }
