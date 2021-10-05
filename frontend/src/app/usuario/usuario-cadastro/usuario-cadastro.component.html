@@ -1,12 +1,13 @@
 <p-toast></p-toast>
 <div class="form-container">
     <form [formGroup]="usuarioForm">
-        <h1 class="first">CADASTRO DE USUÁRIO</h1>
+        <h1 class="first">{{ getTitulo() }}</h1>
         <div class="ui-g ui-fluid">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">perm_identity</i>Nome</span>
-                    <input formControlName="nome" name="nome" type="text" pInputText>
+                    <input formControlName="nome" type="text" pInputText>
+                    <app-mensagem *ngIf='false'></app-mensagem>
                 </div>
             </div>
 

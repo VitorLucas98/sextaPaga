@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UsuarioService {
 
-  baseUrl = 'http://localhost:8080/api/usuarios';
+  baseUrl = '/api/usuarios';
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +26,7 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.baseUrl, usuario);
   }
 
-  atualizacao(usuario : Usuario, id : any) : Observable<Usuario> {
+  atualizar(usuario : Usuario, id : any) : Observable<Usuario> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.put<Usuario>(url, usuario);
   }
