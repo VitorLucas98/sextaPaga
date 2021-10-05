@@ -12,7 +12,6 @@ export class MotivoService {
 
   constructor(private http: HttpClient) { }
   
-
   buscarTodos(): Observable<MotivoListagem[]> {
     const url = `${this.baseUrl}`;
     return this.http.get<MotivoListagem[]>(url);

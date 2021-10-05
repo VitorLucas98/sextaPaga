@@ -1,5 +1,6 @@
 import { Motivo } from "./Motivo";
 import { SelectItem } from "./SelectItem";
+import { Situacao } from "./Situacao";
 import { Usuario } from "./Usuario";
 
 export class Evento{
