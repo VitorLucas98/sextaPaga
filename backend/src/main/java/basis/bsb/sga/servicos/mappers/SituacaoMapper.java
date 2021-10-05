@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.mappers;
 
+
 import basis.bsb.sga.dominio.Situacao;
 import basis.bsb.sga.servicos.dtos.SituacaoDTO;
 import org.mapstruct.Mapper;

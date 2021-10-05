@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.excecoes;
 
+
 public class ObjetoNaoEncontrado extends RuntimeException{
 
     public ObjetoNaoEncontrado() {

@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.dtos;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
