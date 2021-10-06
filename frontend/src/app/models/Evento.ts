@@ -1,23 +1,22 @@
-import { Motivo } from "./Motivo";
 import { SelectItem } from "./SelectItem";
-import { Usuario } from "./Usuario";
+
 
 export class Evento{
-    id: number;
+    id: any;
     nome: string;
     dataEvento: string;
     valor: number;
-    motivo: Motivo; 
+    motivo: SelectItem; 
     situacao: SelectItem;
-    usuarios: Usuario[];
+    usuarios: SelectItem[];
 }
 
 export class EventoListagem{
-    id: number;
+    id: any;
     nome: string;
     dataEvento: string;
     valor: number;
-    motivo: Motivo; 
+    motivo: SelectItem; 
     situacao: SelectItem;
-    usuarios: Usuario[];
+    usuarios: SelectItem[];
 }

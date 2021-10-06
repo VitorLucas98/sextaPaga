@@ -1,7 +1,8 @@
-import { Motivo, MotivoListagem } from '../models/Motivo';
+import { Motivo } from '../models/Motivo';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SelectItem } from '../models/SelectItem';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,14 @@ export class MotivoService {
   constructor(private http: HttpClient) { }
   
 
-  buscarTodos(): Observable<MotivoListagem[]> {
+  buscarTodos(): Observable<Motivo[]> {
     const url = `${this.baseUrl}`;
-    return this.http.get<MotivoListagem[]>(url);
+    return this.http.get<Motivo[]>(url);
+  }
+
+  buscarTodosSelect(): Observable<SelectItem[]> {
+    const url = `${this.baseUrl}/select`;
+    return this.http.get<SelectItem[]>(url);
   }
 
   buscarPorId(id: any): Observable<Motivo> {

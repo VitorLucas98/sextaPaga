@@ -2,6 +2,7 @@ import { EventoService } from './../../services/evento.service';
 import { Component, OnInit } from '@angular/core';
 import { EventoListagem } from '../../models/Evento';
 import { Router } from '@angular/router';
+import { MotivoService } from 'src/app/services/motivo.service';
 
 @Component({
   selector: 'app-evento-list',
@@ -13,7 +14,7 @@ export class EventoListComponent implements OnInit {
   eventos: EventoListagem[] = [];
 
 
-  constructor(private service : EventoService, private router: Router) { }
+  constructor(private service : EventoService, private router: Router, private motivoService : MotivoService) { }
 
   ngOnInit(): void {
     this.buscarTodos();
@@ -26,7 +27,6 @@ export class EventoListComponent implements OnInit {
   buscarTodos(): void{
     this.service.buscarTodos().subscribe( res => {
       this.eventos = res;
-      console.log(this.eventos);
     })
   }
 

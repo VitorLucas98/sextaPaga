@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mensagem',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mensagem.component.css']
 })
 export class MensagemComponent implements OnInit {
-
+  @Input() mensagem = '';
   constructor() { }
 
   ngOnInit(): void {

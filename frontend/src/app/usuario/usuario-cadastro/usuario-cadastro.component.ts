@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -10,6 +10,7 @@ import { MessageService } from 'primeng/api';
 import { MessagemUtils } from 'src/app/shared/mensagens-uteis';
 import { Usuario } from 'src/app/models/Usuario';
 import { CrudOperationEnum } from 'src/app/enums/Crud-Operation.enum';
+import { FormataDataPipe } from 'src/app/pipes/formata-data.pipe';
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -24,15 +25,17 @@ export class UsuarioCadastroComponent implements OnInit {
 
   cargos: SelectItem[] = [];
 
-  @Input() usuario : Usuario;
-  @Input() modoCrud : CrudOperationEnum = 0;
+  @Input() usuario: Usuario;
+  @Input() modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE;
+  @Output() onCancel: EventEmitter<any> = new EventEmitter();
 
 
   constructor(
     private service: UsuarioService,
     private router: Router,
     private cargoService: CargoService,
-    private mensagem: MessageService) {
+    private mensagem: MessageService,
+    private formaData : FormataDataPipe) {
 
   }
 
@@ -64,18 +67,67 @@ export class UsuarioCadastroComponent implements OnInit {
     });
   }
 
-  preencherFormulario(): void{
+
+  preencherFormulario(): void {
     this.usuarioForm.get('id').setValue(this.usuario.id);
     this.usuarioForm.get('nome').setValue(this.usuario.nome);
     this.usuarioForm.get('cpf').setValue(this.usuario.cpf);
-    this.usuarioForm.get('dataNascimento').setValue(this.usuario.dataNascimento);
+    this.usuarioForm.get('dataNascimento').setValue(this.formaData.transform(this.usuario.dataNascimento));
     this.usuarioForm.get('email').setValue(this.usuario.email);
     this.usuarioForm.get('telefone').setValue(this.usuario.telefone);
     this.usuarioForm.get('status').setValue(this.usuario.status);
-    }
+    this.usuarioForm.get('cargo').setValue(this.usuario.cargo.value);
+
+    console.log(this.usuarioForm.get('dataNascimento').value);
+  }
 
   public cancelar(): void {
+    this.onCancel.emit()
     this.router.navigateByUrl('usuarios')
+  }
+
+  public getTitulo(): string {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE: return 'CADASTRO DE USUÁRIO';
+      case CrudOperationEnum.UPDATE: return 'EDIÇÃO DE USUÁRIO';
+      case CrudOperationEnum.READ: return 'VISUALIZAÇÃO DE USUÁRIO';
+    }
+  }
+
+  public persistir(): Observable<Usuario> {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE:
+        this.criarUsuario();
+        return
+      case CrudOperationEnum.UPDATE:
+        this.atualizarUsuario();
+        return
+    }
+    throw Error('Não foi possível persistir os dados devido à falta de uma estratégia');
+  }
+
+  public criarUsuario(): void {
+    this.salvar();
+    this.service.inserir(this.usuarioForm.value).subscribe(() => {
+      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+      this.router.navigateByUrl('usuarios')
+    })
+  }
+
+  public atualizarUsuario(): void {
+    this.salvar();
+    this.service.atualizar(this.usuarioForm.value, this.usuarioForm.value.id).subscribe(() => {
+      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+    })
+  }
+
+  public salvar(): void {
+    this.formatarData();
+    this.formataCargo();
+    if (!this.usuarioForm.valid) {
+      this.mensagem.add({ severity: 'error', summary: MessagemUtils.TITULO_DADOS_INVALIDOS, detail: MessagemUtils.MENSAGEM_ERRO_PREENCHIMENTO })
+      return;
+    }
   }
 
   public formatarData(): void {
@@ -87,39 +139,4 @@ export class UsuarioCadastroComponent implements OnInit {
     const cargoId = this.usuarioForm.value.cargo;
     this.usuarioForm.value.cargo = { value: cargoId };
   }
-
-  public getTitulo(): string{
-    switch(this.modoCrud) {
-      case CrudOperationEnum.CREATE: return 'CADASTRO DE USUÁRIO';
-      case CrudOperationEnum.UPDATE: return 'EDIÇÃO DE USUÁRIO';
-      case CrudOperationEnum.READ: return 'VISUALIZAÇÃO DE USUÁRIO';
-    }
-  }
-
-  public criar(): void {
-    this.formatarData();
-    this.formataCargo();
-
-    if (!this.usuarioForm.valid) {
-      this.mensagem.add({ severity: 'error', summary: MessagemUtils.TITULO_DADOS_INVALIDOS, detail: MessagemUtils.MENSAGEM_ERRO_PREENCHIMENTO })
-      return;
-    }
-    this.salvarUsuario();
-  }
-
-  public persistir(): Observable<Usuario> {
-    switch(this.modoCrud) {
-      case CrudOperationEnum.CREATE: return this.service.inserir(this.usuarioForm.value);
-      case CrudOperationEnum.UPDATE: return this.service.atualizar(this.usuarioForm.value, this.usuario);
-    }
-    throw Error('Não foi possível persistir os dados devido à falta de uma estratégia');
-  }
-
-  public salvarUsuario(): void {
-    this.service.inserir(this.usuarioForm.value).subscribe(() => {
-      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
-      this.router.navigateByUrl('usuarios')
-    })
-  }
-
 }

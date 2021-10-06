@@ -26,17 +26,17 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.baseUrl, usuario);
   }
 
-  atualizar(usuario : Usuario, id : any) : Observable<Usuario> {
+  atualizar(usuario : Usuario, id : number) : Observable<Usuario> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.put<Usuario>(url, usuario);
   }
 
-  ativarUsuario(id : any) : Observable<Usuario> {
+  ativarUsuario(id : number) : Observable<Usuario> {
     const url = `${this.baseUrl}/ativar/${id}`;
     return this.http.put<Usuario>(url, null);
   }
 
-  desativarUsuario(id : any) : Observable<Usuario>{
+  desativarUsuario(id : number) : Observable<Usuario>{
     const url = `${this.baseUrl}/desativar/${id}`;
     return this.http.put<Usuario>(url, null);
   }
