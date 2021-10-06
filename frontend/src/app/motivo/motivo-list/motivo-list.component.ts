@@ -24,13 +24,12 @@ export class MotivoListComponent implements OnInit {
   }
 
   cadastrar(): void{
-    this.router.navigateByUrl('motivos/criacao')
+    this.router.navigateByUrl('motivos/criar')
   }
 
   buscarTodos(): void{
     this.service.buscarTodos().subscribe( res => {
       this.motivos = res;
-      console.log(this.motivos);
     })
   }
 

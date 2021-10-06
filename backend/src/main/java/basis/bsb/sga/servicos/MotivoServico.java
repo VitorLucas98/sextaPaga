@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos;
 
+
 import basis.bsb.sga.dominio.Motivo;
 import basis.bsb.sga.repositorios.MotivoRepositorio;
 import basis.bsb.sga.servicos.dtos.MotivoDTO;
@@ -11,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -30,7 +30,7 @@ public class MotivoServico  {
         return mapper.toDto(motivo);
     }
 
-    public List<MotivoDTO>buscarTodos(){
+    public List<MotivoDTO> buscarTodos(){
         return mapper.toDto(repositorio.findAll());
     }
 

@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos;
 
+
 import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.repositorios.UsuarioRepositorio;
 import basis.bsb.sga.servicos.dtos.UsuarioDTO;
@@ -12,7 +13,6 @@ import basis.bsb.sga.servicos.mappers.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service

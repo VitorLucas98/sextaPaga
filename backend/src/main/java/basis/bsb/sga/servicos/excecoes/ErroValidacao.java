@@ -1,8 +1,8 @@
 package basis.bsb.sga.servicos.excecoes;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
