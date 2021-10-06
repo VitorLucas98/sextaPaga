@@ -16,6 +16,7 @@ export class EventoService {
     const url = `${this.baseUrl}/filtro`;
     return this.http.get<Evento[]>(url);
   }
+  
 
   buscarPorId( id : any): Observable<Evento> {
     const url = `${this.baseUrl}/${id}`;

@@ -2,6 +2,7 @@ package basis.bsb.sga.servicos;
 
 import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.repositorios.UsuarioRepositorio;
+import basis.bsb.sga.servicos.dtos.SelectDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioListagemDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
@@ -9,6 +10,7 @@ import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
 import basis.bsb.sga.servicos.filtros.UsuarioFiltro;
 import basis.bsb.sga.servicos.mappers.UsuarioListagemMapper;
 import basis.bsb.sga.servicos.mappers.UsuarioMapper;
+import basis.bsb.sga.servicos.mappers.UsuarioSelectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,12 @@ public class UsuarioServico {
     private final EventoServico eventoServico;
 
     private final UsuarioMapper mapper;
+
+    private final UsuarioSelectMapper selectMapper;
+
+    public List<SelectDTO> buscarTodosSelect() {
+    return  selectMapper.toDto(repositorio.findAll());
+    }
 
     public List<UsuarioListagemDTO> buscarTodosFiltrado(UsuarioFiltro filtro) {
         return listagemMapper.toDto(repositorio.findAll(filtro.filter()));
@@ -78,5 +86,6 @@ public class UsuarioServico {
         editar(dto, id);
         return dto;
     }
+
 
 }
