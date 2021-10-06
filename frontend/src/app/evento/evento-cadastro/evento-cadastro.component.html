@@ -34,6 +34,16 @@
                     <p-dropdown [options]="situacoes" [filter]="true"></p-dropdown>
                 </div>
             </div>
+            <div class="ui-g-12">
+                <p-pickList [source]="todosUsuarios" [target]="usuariosSelecionados" sourceHeader="Todos Usuarios" targetHeader="Usuarios Selecionados" [responsive]="true" filterBy="label" dragdrop="true" sourceFilterPlaceholder="Procurar por nome" targetFilterPlaceholder="Procurar por nome"
+                    [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+                    <ng-template let-usuario pTemplate="item">
+                        <div class="ui-helper-clearfix">
+                            <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{usuario.label}}</div>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+            </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-g-offset-3">

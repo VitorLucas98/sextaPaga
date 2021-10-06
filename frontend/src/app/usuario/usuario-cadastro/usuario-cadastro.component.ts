@@ -43,6 +43,7 @@ export class UsuarioCadastroComponent implements OnInit {
     this.criaFormulario();
     this.listaCargos();
     this.preencherFormulario();
+    this.estadoFormulario(CrudOperationEnum.UPDATE == this.modoCrud || CrudOperationEnum.CREATE == this.modoCrud);
   }
 
   public listaCargos(): void {
@@ -77,8 +78,10 @@ export class UsuarioCadastroComponent implements OnInit {
     this.usuarioForm.get('telefone').setValue(this.usuario.telefone);
     this.usuarioForm.get('status').setValue(this.usuario.status);
     this.usuarioForm.get('cargo').setValue(this.usuario.cargo.value);
+  }
 
-    console.log(this.usuarioForm.get('dataNascimento').value);
+  public estadoFormulario(habilitado: boolean): void {
+    habilitado ?  this.usuarioForm.enable() : this.usuarioForm.disable();
   }
 
   public cancelar(): void {

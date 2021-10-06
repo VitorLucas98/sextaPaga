@@ -2,6 +2,7 @@ package basis.bsb.sga.web.rest;
 
 
 import basis.bsb.sga.servicos.UsuarioServico;
+import basis.bsb.sga.servicos.dtos.SelectDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.dtos.UsuarioListagemDTO;
 import basis.bsb.sga.servicos.filtros.UsuarioFiltro;
@@ -31,6 +32,11 @@ public class UsuarioRecurso {
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(service.buscarPorId(id));
+    }
+
+    @GetMapping(value = "/select")
+    public ResponseEntity<List<SelectDTO>> buscarTodosSelect(){
+        return ResponseEntity.ok(service.buscarTodosSelect());
     }
 
     @GetMapping(value = "/filtro")

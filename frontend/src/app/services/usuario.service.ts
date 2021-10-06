@@ -2,6 +2,7 @@ import { Usuario, UsuarioListagem } from './../models/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SelectItem } from '../models/SelectItem';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,11 @@ export class UsuarioService {
   buscarTodos(): Observable<UsuarioListagem[]> {
     const url = `${this.baseUrl}/filtro`;
     return this.http.get<UsuarioListagem[]>(url);
+  }
+
+  buscarTodosSelect(): Observable<SelectItem[]>{
+    const url = `${this.baseUrl}/select`;
+    return this.http.get<SelectItem[]>(url);
   }
 
   buscarPorId(id: any): Observable<Usuario> {
