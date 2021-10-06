@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario, UsuarioListagem } from 'src/app/models/Usuario';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CrudOperationEnum } from 'src/app/enums/Crud-Operation.enum';
 
 @Component({
   selector: 'app-usuario-list',
@@ -13,8 +14,8 @@ export class UsuarioListComponent implements OnInit {
 
   usuarios: UsuarioListagem[] = [];
   usuarioBuscado: Usuario;
-  formEdicao: boolean = false;
-  formView: boolean = false;
+  public isDialogVisible: boolean = false;
+  private modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE; 
 
   constructor(private service: UsuarioService, private router: Router) { }
 
@@ -35,7 +36,7 @@ export class UsuarioListComponent implements OnInit {
   public visualizar(usuarioId: number): void {
     this.service.buscarPorId(usuarioId).subscribe(res => {
       this.usuarioBuscado = res
-      this.formView = true;
+      this.showDialog(CrudOperationEnum.READ);
     })
 
   }
@@ -43,7 +44,16 @@ export class UsuarioListComponent implements OnInit {
   public editar(usuarioId: number): void {
     this.service.buscarPorId(usuarioId).subscribe(res => {
       this.usuarioBuscado = res
-      this.formEdicao = true;
+      this.showDialog(CrudOperationEnum.UPDATE);
     })
+  }
+
+  public getModoCrud(): CrudOperationEnum {
+    return this.modoCrud;
+  }
+
+  public showDialog(operacao: CrudOperationEnum): void {
+    this.modoCrud = operacao;
+    this.isDialogVisible = true;
   }
 }

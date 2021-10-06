@@ -4,8 +4,10 @@ package basis.bsb.sga.servicos;
 import basis.bsb.sga.dominio.Motivo;
 import basis.bsb.sga.repositorios.MotivoRepositorio;
 import basis.bsb.sga.servicos.dtos.MotivoDTO;
+import basis.bsb.sga.servicos.dtos.SelectDTO;
 import basis.bsb.sga.servicos.excecoes.ObjetoNaoEncontrado;
 import basis.bsb.sga.servicos.mappers.MotivoMapper;
+import basis.bsb.sga.servicos.mappers.MotivoSelectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,8 @@ public class MotivoServico  {
 
     private final MotivoMapper mapper;
 
+    private final MotivoSelectMapper selectMapper;
+
     public MotivoDTO buscarPorId(Long id){
         Motivo motivo = repositorio.findById(id).orElseThrow( () -> new ObjetoNaoEncontrado("Motivo  não encontrado"));
         return mapper.toDto(motivo);
@@ -28,6 +32,10 @@ public class MotivoServico  {
 
     public List<MotivoDTO> buscarTodos(){
         return mapper.toDto(repositorio.findAll());
+    }
+
+    public List<SelectDTO>buscarTodosSelect(){
+        return selectMapper.toDto(repositorio.findAll());
     }
 
     public MotivoDTO inserir(MotivoDTO dto){

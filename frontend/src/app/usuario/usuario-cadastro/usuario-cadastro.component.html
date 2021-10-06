@@ -7,7 +7,8 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">perm_identity</i>Nome</span>
                     <input formControlName="nome" type="text" pInputText>
-                    <app-mensagem *ngIf='false'></app-mensagem>
+                    <app-mensagem *ngIf="usuarioForm.get('nome')?.errors?.required
+                    && usuarioForm.get('nome')?.touched" mensagem="Nome é obrigatório"></app-mensagem>
                 </div>
             </div>
 
@@ -15,6 +16,10 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">email</i>Email</span>
                     <input type="text" formControlName='email' name="email" pInputText>
+                    <app-mensagem *ngIf="usuarioForm.get('email')?.errors?.required
+                    && usuarioForm.get('email')?.touched" mensagem="Email é obrigatório"></app-mensagem>
+                    <app-mensagem *ngIf="usuarioForm.get('email')?.errors?.email
+                    && usuarioForm.get('email')?.touched" mensagem="Email no formato incorreto"></app-mensagem>
                 </div>
             </div>
 
@@ -22,6 +27,8 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">assignment_ind</i>CPF</span>
                     <p-inputMask mask="999.999.999-99" name="cpf" [unmask]=true formControlName='cpf'></p-inputMask>
+                    <app-mensagem *ngIf="usuarioForm.get('cpf')?.errors?.required
+                    && usuarioForm.get('cpf')?.touched" mensagem="CPF é obrigatório"></app-mensagem>
                 </div>
             </div>
 
@@ -29,6 +36,7 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">local_phone</i>Telefone</span>
                     <p-inputMask mask="(99)99999-9999" name="telefone" [unmask]=true formControlName='telefone'></p-inputMask>
+
                 </div>
             </div>
 
@@ -36,16 +44,19 @@
                 <div class="ui-g-3 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">work</i>Cargo</span>
                     <p-dropdown [options]="cargos" [filter]="true" formControlName='cargo'></p-dropdown>
+                    <app-mensagem *ngIf="usuarioForm.get('cargo')?.errors?.required
+                    && usuarioForm.get('cargo')?.touched" mensagem="Cargo é obrigatório"></app-mensagem>
                 </div>
                 <div class="ui-g-3">
                     <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data de Nascimento</span>
-                    <p-calendar [disabledDates]="" [disabledDays]="[0,6]" formControlName='dataNascimento' [readonlyInput]="true"></p-calendar>
+                    <p-calendar [disabledDates]="" [disabledDays]="[0,6]" dateFormat="dd/mm/yy" formControlName='dataNascimento' [readonlyInput]="true"></p-calendar>
+
                 </div>
             </div>
 
-            <div class="ui-g-12">
+            <div class="ui-g-12" *ngIf='modoCrud != 3'>
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton (click)="this.criar()" label="Criar"></button>
+                    <button pButton (click)="persistir()" label="Salvar"></button>
                 </div>
                 <div class="ui-g-2">
                     <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-danger"></button>

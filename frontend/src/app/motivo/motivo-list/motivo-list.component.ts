@@ -1,6 +1,6 @@
 import { MotivoService } from './../../services/motivo.service';
 import { Component, OnInit } from '@angular/core';
-import { MotivoListagem } from 'src/app/models/Motivo';
+import { Motivo } from 'src/app/models/Motivo';
 import { MessageService } from 'primeng';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MotivoListComponent implements OnInit {
 
-  motivos: MotivoListagem[] = [];
+  motivos: Motivo[] = [];
   
 
   constructor(private service : MotivoService, private router: Router,

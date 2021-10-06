@@ -3,6 +3,7 @@ package basis.bsb.sga.web.rest;
 
 import basis.bsb.sga.servicos.MotivoServico;
 import basis.bsb.sga.servicos.dtos.MotivoDTO;
+import basis.bsb.sga.servicos.dtos.SelectDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +31,11 @@ public class MotivoRecurso {
     @GetMapping(value = "/{id}")
     public ResponseEntity<MotivoDTO> buscarPorId(@PathVariable Long id){
         return ResponseEntity.ok(servico.buscarPorId(id));
+    }
+
+    @GetMapping(value = "/select")
+    public ResponseEntity<List<SelectDTO>> buscarTodosSelect(){
+        return ResponseEntity.ok(servico.buscarTodosSelect());
     }
 
     @GetMapping

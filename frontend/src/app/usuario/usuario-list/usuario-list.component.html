@@ -63,10 +63,6 @@
     </ng-template>
 </p-table>
 
-<p-dialog [(visible)]="formEdicao">
-    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]='1' *ngIf="formEdicao"></app-usuario-cadastro>
-</p-dialog>
-
-<p-dialog [(visible)]="formView">
-    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]='3' *ngIf="formView"></app-usuario-cadastro>
+<p-dialog [(visible)]="isDialogVisible">
+    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]="getModoCrud()" *ngIf="isDialogVisible" (onCancel)='isDialogVisible = false'></app-usuario-cadastro>
 </p-dialog>

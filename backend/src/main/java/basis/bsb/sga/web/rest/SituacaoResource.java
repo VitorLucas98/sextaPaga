@@ -2,6 +2,7 @@ package basis.bsb.sga.web.rest;
 
 
 import basis.bsb.sga.servicos.SituacaoService;
+import basis.bsb.sga.servicos.dtos.SelectDTO;
 import basis.bsb.sga.servicos.dtos.SituacaoDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class SituacaoResource {
     private final SituacaoService service;
 
     @GetMapping
-    public ResponseEntity<List<SituacaoDTO>> buscarTodos(){
+    public ResponseEntity<List<SelectDTO>> buscarTodos(){
         return ResponseEntity.ok(service.buscarTodos());
     }
 }
