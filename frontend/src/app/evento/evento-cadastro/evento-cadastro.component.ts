@@ -1,10 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng';
+import * as moment from 'moment';
 import { SelectItem } from 'src/app/models/SelectItem';
 import { EventoService } from 'src/app/services/evento.service';
 import { MotivoService } from 'src/app/services/motivo.service';
 import { SituacaoService } from 'src/app/services/situacao.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MessagemUtils } from 'src/app/shared/mensagens-uteis';
+import { Router } from '@angular/router';
+import { Evento } from 'src/app/models/Evento';
+import { Input } from '@angular/core';
+import { CrudOperationEnum } from 'src/app/enums/Crud-Operation.enum';
+import { FormataDataPipe } from 'src/app/pipes/formata-data.pipe';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-evento-cadastro',
@@ -17,42 +27,73 @@ export class EventoCadastroComponent implements OnInit {
   public fb: FormBuilder = new FormBuilder();
 
   motivos: SelectItem[] = [];
-  situacoes : SelectItem[] = [];
+  situacoes: SelectItem[] = [];
   todosUsuarios: SelectItem[] = [];
   usuariosSelecionados: SelectItem[] = [];
 
+  @Input() evento: Evento;
+  @Input() modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE;
+  @Output() onCancel: EventEmitter<any> = new EventEmitter();
+  @Output() novaBusca: EventEmitter<any> = new EventEmitter();
+
   constructor(
-    private service: EventoService, 
-    private motivoService : MotivoService, 
-    private situacaoService : SituacaoService, 
-    private usuarioService : UsuarioService) { }
+    private service: EventoService,
+    private motivoService: MotivoService,
+    private situacaoService: SituacaoService,
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private mensagem: MessageService,
+    private formataData: FormataDataPipe) { }
 
   ngOnInit(): void {
+    this.criaFormulario();
     this.listaMotivos();
     this.listaSituacoes();
     this.buscarTodosUsuario();
+    this.preencherFormulario();
+    this.estadoFormulario(CrudOperationEnum.UPDATE == this.modoCrud || CrudOperationEnum.CREATE == this.modoCrud);
   }
 
-  public buscarTodosUsuario(){
+  public getTitulo(): string {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE: return 'CADASTRO DE EVENTO';
+      case CrudOperationEnum.UPDATE: return 'EDIÇÃO DE EVENTO';
+      case CrudOperationEnum.READ: return 'VISUALIZAÇÃO DE EVENTO';
+    }
+  }
+
+  public buscarTodosUsuario() {
     this.usuarioService.buscarTodosSelect().subscribe(result => {
       this.todosUsuarios = result;
-      console.log(this.todosUsuarios);
     })
   }
-  
-  
+
+
   public criaFormulario(): void {
     this.eventoForm = this.fb.group({
-    id: [null],
-    nome: ['', Validators.required],
-    dataEvento: ['', Validators.required],
-    valor: ['', Validators.required],
-    motivo: [null, Validators.required], 
-    situacao: [null, Validators.required],
-    usuarios: [null, Validators.required]
+      id: [null],
+      nome: ['', Validators.required],
+      dataEvento: ['', Validators.required],
+      valor: ['', Validators.required],
+      motivo: [null, Validators.required],
+      situacao: [null, Validators.required],
+      usuarios: [null, Validators.required]
     });
   }
 
+  preencherFormulario(): void {
+    this.eventoForm.get('id').setValue(this.evento.id);
+    this.eventoForm.get('nome').setValue(this.evento.nome);
+    this.eventoForm.get('dataEvento').setValue(this.formataData.transform(this.evento.dataEvento));
+    this.eventoForm.get('valor').setValue(this.evento.valor);
+    this.eventoForm.get('motivo').setValue(this.evento.motivo.value);
+    this.eventoForm.get('situacao').setValue(this.evento.situacao.value);
+    //this.eventoForm.get('usuarios').setValue(this.usuariosSelecionados);
+  }
+
+  public estadoFormulario(habilitado: boolean): void {
+    habilitado ? this.eventoForm.enable() : this.eventoForm.disable();
+  }
 
   public listaMotivos(): void {
     this.motivoService.buscarTodosSelect().subscribe(res => {
@@ -70,6 +111,60 @@ export class EventoCadastroComponent implements OnInit {
         value: null
       } as SelectItem].concat(res);
     })
+  }
+
+
+
+  public persistir(): Observable<Evento> {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE:
+        this.criarEvento();
+        return
+      case CrudOperationEnum.UPDATE:
+        this.atualizarEvento();
+        return
+    }
+    throw Error('Não foi possível persistir os dados devido à falta de uma estratégia');
+  }
+
+  public criarEvento(): void {
+    this.validadorFormulario();
+    this.service.inserir(this.eventoForm.value).subscribe(() => {
+      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+      this.router.navigateByUrl('usuarios')
+    })
+  }
+
+  public atualizarEvento(): void {
+    this.validadorFormulario();
+    this.service.atualizar(this.eventoForm.value, this.eventoForm.value.id).subscribe(() => {
+      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+      this.onCancel.emit();
+      this.novaBusca.emit();
+    })
+  }
+
+  public validadorFormulario(): void {
+    this.formatarData();
+    this.formataSituacao();
+    this.formataMotivo();
+  }
+  private formatarData(): void {
+    let data: moment.Moment = moment.utc(this.eventoForm.value.dataEvento).local();
+    this.eventoForm.value.dataEvento = data.format('DD/MM/YYYY');
+  }
+
+  private formataMotivo(): void {
+    const motivoId = this.eventoForm.value.motivo;
+    this.eventoForm.value.motivo = { value: motivoId };
+  }
+  private formataSituacao(): void {
+    const situacaoId = this.eventoForm.value.situacao;
+    this.eventoForm.value.situacao = { value: situacaoId };
+  }
+  public cancelarEvento(): void {
+    this.onCancel.emit();
+    this.router.navigateByUrl('eventos')
   }
 
 }
