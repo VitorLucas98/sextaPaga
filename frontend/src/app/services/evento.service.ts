@@ -17,7 +17,6 @@ export class EventoService {
     return this.http.get<Evento[]>(url);
   }
   
-
   buscarPorId( id : any): Observable<Evento> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.get<Evento>(url);
@@ -26,5 +25,17 @@ export class EventoService {
   inserir(evento : Evento): Observable<Evento>{
     return this.http.post<Evento>(this.baseUrl, evento);
   }
+  
+  atualizar(evento: Evento, id : number) : Observable<Evento> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.put<Evento>(url, evento);
+  }
+
+  adiarEvento( id : number): Observable<void>{
+    const url = `${this.baseUrl}/adiar/${id}`;
+    return this.http.put<void>(url, null);
+  }
+
+
 
 }

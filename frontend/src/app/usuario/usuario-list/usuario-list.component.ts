@@ -45,6 +45,7 @@ export class UsuarioListComponent implements OnInit {
     this.service.buscarPorId(usuarioId).subscribe(res => {
       this.usuarioBuscado = res
       this.showDialog(CrudOperationEnum.UPDATE);
+ 
     })
   }
 

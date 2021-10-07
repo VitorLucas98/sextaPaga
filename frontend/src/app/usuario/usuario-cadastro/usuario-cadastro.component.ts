@@ -28,6 +28,7 @@ export class UsuarioCadastroComponent implements OnInit {
   @Input() usuario: Usuario;
   @Input() modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE;
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
+  @Output() novaBusca: EventEmitter<any> = new EventEmitter();
 
 
   constructor(
@@ -114,6 +115,7 @@ export class UsuarioCadastroComponent implements OnInit {
     this.service.inserir(this.usuarioForm.value).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
       this.router.navigateByUrl('usuarios')
+      this.onCancel.emit();
     })
   }
 
@@ -121,6 +123,8 @@ export class UsuarioCadastroComponent implements OnInit {
     this.salvar();
     this.service.atualizar(this.usuarioForm.value, this.usuarioForm.value.id).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+      this.onCancel.emit();
+      this.novaBusca.emit();
     })
   }
 

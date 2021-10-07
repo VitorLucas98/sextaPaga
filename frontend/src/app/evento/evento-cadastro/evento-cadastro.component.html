@@ -1,42 +1,42 @@
 <div class="form-container">
-    <form action="">
-        <h1 class="first">CADASTRAR EVENTO</h1>
+    <form [formGroup]="eventoForm">
+        <h1 class="first">{{ getTitulo() }}</h1>
         <div class="ui-g ui-fluid">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">create</i>Nome do Evento</span>
-                    <input type="text" pInputText>
+                    <input type="text" pInputText formControlName="nome">
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data do Evento</span>
-                    <p-calendar [disabledDays]="[0,6]" dateFormat="dd/mm/yy" [readonlyInput]="true"></p-calendar>
+                    <p-calendar [disabledDays]="[0,6]" dateFormat="dd/mm/yy" formControlName="dataEvento" [readonlyInput]="true"></p-calendar>
                 </div>
             </div>
 
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">attach_money</i>Valor</span>
-                    <input type="number" pInputText>
+                    <input type="number" pInputText formControlName="valor">
                 </div>
             </div>
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">insert_comment</i>Motivo</span>
-                    <p-dropdown [options]="motivos" [filter]="true"></p-dropdown>
+                    <p-dropdown [options]="motivos" formControlName="motivo" [filter]="true"></p-dropdown>
                 </div>
             </div>
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">work</i>Situação</span>
-                    <p-dropdown [options]="situacoes" [filter]="true"></p-dropdown>
+                    <p-dropdown [options]="situacoes" formControlName="situacao" [filter]="true"></p-dropdown>
                 </div>
             </div>
             <div class="ui-g-12">
                 <p-pickList [source]="todosUsuarios" [target]="usuariosSelecionados" sourceHeader="Todos Usuarios" targetHeader="Usuarios Selecionados" [responsive]="true" filterBy="label" dragdrop="true" sourceFilterPlaceholder="Procurar por nome" targetFilterPlaceholder="Procurar por nome"
-                    [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+                    [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" [disabled]='modoCrud == 3'>
                     <ng-template let-usuario pTemplate="item">
                         <div class="ui-helper-clearfix">
                             <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{usuario.label}}</div>
@@ -45,12 +45,12 @@
                 </p-pickList>
             </div>
 
-            <div class="ui-g-12">
+            <div class="ui-g-12" *ngIf='modoCrud != 3'>
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton type="button" label="Criar"></button>
+                    <button pButton type="button" label="Salvar" (click)="persistir()"></button>
                 </div>
                 <div class="ui-g-2">
-                    <button pButton type="button" label="Cancelar" class="ui-button-danger"></button>
+                    <button pButton type="button" label="Cancelar" (click)="cancelarEvento()" class="ui-button-danger"></button>
                 </div>
             </div>
         </div>
