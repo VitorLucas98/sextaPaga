@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.mappers;
 
+
 import basis.bsb.sga.dominio.Evento;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
 import org.mapstruct.Mapper;

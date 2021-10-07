@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
+
     { path: 'diario-erros', component: DiarioErrosComponent, data: { breadcrumb: 'Diário de Erros'} },
     { path: 'login-success', component: LoginSuccessComponent },
     { path: '', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
     
 ];
 
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
@@ -22,3 +24,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+

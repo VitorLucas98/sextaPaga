@@ -2,14 +2,11 @@ package basis.bsb.sga.builder;
 
 
 import basis.bsb.sga.dominio.Evento;
-import basis.bsb.sga.dominio.Motivo;
-import basis.bsb.sga.dominio.Situacao;
 import basis.bsb.sga.repositorios.EventoRepositorio;
 import basis.bsb.sga.servicos.dtos.EventoDTO;
 import basis.bsb.sga.servicos.mappers.EventoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -29,15 +26,7 @@ public class EventoBuilder extends ConstrutorDeEntidade<Evento> {
         evento.setNome("Francisco Doglas");
         evento.setDataEvento(LocalDate.now().minusDays(6));
         evento.setValor(100.00);
-        /*
-        Motivo motivo = new Motivo();
-        motivo.setId(1L);
-        evento.setMotivo(motivo);
 
-        Situacao situacao = new Situacao();
-        situacao.setId(1L);
-        evento.setSituacao(situacao);
-        */
         return evento;
     }
 

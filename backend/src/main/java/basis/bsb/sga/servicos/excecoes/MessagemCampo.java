@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.excecoes;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

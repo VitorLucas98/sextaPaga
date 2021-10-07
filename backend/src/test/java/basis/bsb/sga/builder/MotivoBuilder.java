@@ -1,9 +1,9 @@
 package basis.bsb.sga.builder;
 
+
 import basis.bsb.sga.dominio.Motivo;
 import basis.bsb.sga.repositorios.MotivoRepositorio;
 import basis.bsb.sga.servicos.dtos.MotivoDTO;
-import basis.bsb.sga.servicos.dtos.UsuarioDTO;
 import basis.bsb.sga.servicos.mappers.MotivoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
