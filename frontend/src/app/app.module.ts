@@ -27,7 +27,6 @@ import { HomeComponent } from './components/home/home.component';
         AppFooterComponent,
         DiarioErrosComponent,
         HomeComponent,
-        
     ],
     imports: [
         BlockUIModule.forRoot({

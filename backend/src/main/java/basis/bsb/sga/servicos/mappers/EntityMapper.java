@@ -1,5 +1,6 @@
 package basis.bsb.sga.servicos.mappers;
 
+
 import java.util.List;
 
 public interface EntityMapper<D, E> {

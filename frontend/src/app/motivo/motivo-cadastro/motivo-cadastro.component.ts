@@ -21,6 +21,7 @@ export class MotivoCadastroComponent implements OnInit {
 
 
 
+
   public motivoForm: FormGroup;
   public fb: FormBuilder = new FormBuilder();
 
@@ -29,7 +30,6 @@ export class MotivoCadastroComponent implements OnInit {
   @Input() modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE;
   @Output() onCancel: EventEmitter<any> = new EventEmitter();
   @Output() novaBusca: EventEmitter<any> = new EventEmitter();
-
 
 
   constructor(
@@ -44,7 +44,6 @@ export class MotivoCadastroComponent implements OnInit {
     this.preencherFormulario();
     this.estadoFormulario(CrudOperationEnum.UPDATE == this.modoCrud || CrudOperationEnum.CREATE == this.modoCrud);
   }
-
   public criaFormulario(): void {
     this.motivoForm = this.fb.group({
       id: [null],

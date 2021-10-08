@@ -1,5 +1,7 @@
 package basis.bsb.sga.servicos.filtros;
 
+
+
 import basis.bsb.sga.dominio.Cargo_;
 import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.dominio.Usuario_;
@@ -7,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.Specification;
-
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;

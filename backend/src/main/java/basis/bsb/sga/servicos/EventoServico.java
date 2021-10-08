@@ -9,8 +9,6 @@ import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
 import basis.bsb.sga.servicos.filtros.EventoFiltro;
 import basis.bsb.sga.servicos.mappers.EventoMapper;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +24,6 @@ import java.util.List;
 public class EventoServico {
 
     private final EventoRepositorio repositorio;
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventoServico.class);
     private final EventoMapper mapper;
 
     public EventoDTO buscarPorId(Long id) {

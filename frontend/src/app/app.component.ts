@@ -5,7 +5,10 @@ import { MenusService, MenuOrientation } from '@nuvem/primeng-components';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html'
+    /*templateUrl: './app.componentcopy.html'*/
 })
+
+
 export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     layoutCompact = true;
@@ -48,8 +51,7 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
 
     ngOnInit() {
         this.zone.runOutsideAngular(() => { this.bindRipple(); });
-
-      /*  { label: '', icon: '', routerLink: ['/src/index.thml'] },*/
+   
 
         this.menuService.itens = [
             
@@ -62,10 +64,11 @@ export class AppComponent implements AfterViewInit, OnDestroy, OnInit {
                 {label: 'Lista de motivos', icon: 'list', routerLink: ['/motivos']},
                 {label: 'Criar Motivo', icon: 'add', routerLink: ['motivos/criar']},
             ] },
+
             { label: 'Eventos', icon: 'local_bar', routerLink: ['eventos'],items: [
                 {label: 'Lista de eventos', icon: 'list', routerLink: ['/eventos']},
                 {label: 'Criar Evento', icon: 'add', routerLink: ['eventos/criar']},
-            ] },
+            ] }
         ];
     }
 

@@ -1,5 +1,6 @@
 package basis.bsb.sga.builder;
 
+
 import basis.bsb.sga.dominio.Cargo;
 import basis.bsb.sga.dominio.Usuario;
 import basis.bsb.sga.repositorios.UsuarioRepositorio;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Component
+
 public class UsuarioBuilder extends ConstrutorDeEntidade<Usuario> {
 
     @Autowired

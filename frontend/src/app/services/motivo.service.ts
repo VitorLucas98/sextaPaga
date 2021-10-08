@@ -13,7 +13,6 @@ export class MotivoService {
 
   constructor(private http: HttpClient) { }
   
-
   buscarTodos(): Observable<Motivo[]> {
     const url = `${this.baseUrl}`;
     return this.http.get<Motivo[]>(url);
