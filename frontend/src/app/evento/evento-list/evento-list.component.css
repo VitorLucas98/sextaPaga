@@ -7,20 +7,19 @@
     margin-right: 5%;
 }
 
-.btn-create {
-    margin-bottom: 10px;
-    background-color: #fff;
-}
-
 .btn-acoes {
     display: flex;
     justify-content: center;
 }
 
 i {
-    margin-right: .5rem;
+    margin-right: 1.5rem;
 }
 
 td {
     text-align: center;
+}
+
+.btn-trocar {
+    margin: 1%;
 }

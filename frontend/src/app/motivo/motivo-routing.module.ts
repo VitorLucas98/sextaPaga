@@ -5,7 +5,7 @@ import { MotivoListComponent } from './motivo-list/motivo-list.component';
 
 const routes: Routes = [
   {path: '', component: MotivoListComponent },
-  {path:'criacao', component: MotivoCadastroComponent,data: {breadcrumb: 'criacao'} }
+  {path:'criar', component: MotivoCadastroComponent,data: {breadcrumb: 'criar'} }
 ];
 
 

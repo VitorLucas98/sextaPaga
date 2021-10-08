@@ -33,9 +33,14 @@ export class MotivoService {
     return this.http.post<Motivo>(this.baseUrl, motivo);
   }
 
-  atualizacao(motivo : Motivo, id : any) : Observable<Motivo> {
+  atualizar(motivo : Motivo, id : any) : Observable<Motivo> {
     const url = `${this.baseUrl}/${id}`;
     return this.http.put<Motivo>(url, motivo);
+  }
+  
+  deletar( id : number): Observable<void>{
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<void>(url);
   }
   
 }

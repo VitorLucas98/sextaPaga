@@ -52,4 +52,10 @@ public class EventoRecurso {
     public ResponseEntity<List<EventoDTO>> trocarEvento(@PathVariable Long idPri,@PathVariable Long idSec){
         return ResponseEntity.ok(servico.trocarEventos(idPri, idSec));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+        servico.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
 }

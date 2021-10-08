@@ -59,8 +59,17 @@ export class EventoCadastroComponent implements OnInit {
       case CrudOperationEnum.CREATE: return 'CADASTRO DE EVENTO';
       case CrudOperationEnum.UPDATE: return 'EDIÇÃO DE EVENTO';
       case CrudOperationEnum.READ: return 'VISUALIZAÇÃO DE EVENTO';
+      case CrudOperationEnum.DELETE: return 'DELETAR EVENTO';
     }
   }
+
+  public getButton(): string {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE: return 'CADASTRAR';
+      case CrudOperationEnum.UPDATE: return 'ATUALIZAR';
+      case CrudOperationEnum.DELETE: return 'DELETAR';
+  }
+}
 
   public buscarTodosUsuario() {
     this.usuarioService.buscarTodosSelect().subscribe(result => {
@@ -77,7 +86,7 @@ export class EventoCadastroComponent implements OnInit {
       valor: ['', Validators.required],
       motivo: [null, Validators.required],
       situacao: [null, Validators.required],
-      usuarios: [null, Validators.required]
+      usuarios: [null]
     });
   }
 
@@ -88,7 +97,7 @@ export class EventoCadastroComponent implements OnInit {
     this.eventoForm.get('valor').setValue(this.evento.valor);
     this.eventoForm.get('motivo').setValue(this.evento.motivo.value);
     this.eventoForm.get('situacao').setValue(this.evento.situacao.value);
-    //this.eventoForm.get('usuarios').setValue(this.usuariosSelecionados);
+    this.eventoForm.get('usuarios').setValue(this.usuariosSelecionados)
   }
 
   public estadoFormulario(habilitado: boolean): void {
@@ -113,8 +122,6 @@ export class EventoCadastroComponent implements OnInit {
     })
   }
 
-
-
   public persistir(): Observable<Evento> {
     switch (this.modoCrud) {
       case CrudOperationEnum.CREATE:
@@ -122,6 +129,9 @@ export class EventoCadastroComponent implements OnInit {
         return
       case CrudOperationEnum.UPDATE:
         this.atualizarEvento();
+        return
+      case CrudOperationEnum.DELETE:
+        this.deletarEvento();
         return
     }
     throw Error('Não foi possível persistir os dados devido à falta de uma estratégia');
@@ -131,7 +141,9 @@ export class EventoCadastroComponent implements OnInit {
     this.validadorFormulario();
     this.service.inserir(this.eventoForm.value).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
-      this.router.navigateByUrl('usuarios')
+      this.router.navigateByUrl('eventos')
+    }, erros => {
+      console.log(erros);
     })
   }
 
@@ -139,6 +151,16 @@ export class EventoCadastroComponent implements OnInit {
     this.validadorFormulario();
     this.service.atualizar(this.eventoForm.value, this.eventoForm.value.id).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
+      this.onCancel.emit();
+      this.novaBusca.emit();
+    }, () => {
+      this.mensagem.add({ severity: 'error', summary: MessagemUtils.TITULO_DADOS_INVALIDOS, detail: MessagemUtils.MENSAGEM_ERRO_PREENCHIMENTO });
+    })
+  }
+
+  public deletarEvento(): void{
+    this.service.deletar(this.eventoForm.value.id).subscribe(() =>{
+      this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_DELETADO_SUCESSO, detail: "Evento " + MessagemUtils.MENSAGEM_DADOS_DELETADOS });
       this.onCancel.emit();
       this.novaBusca.emit();
     })

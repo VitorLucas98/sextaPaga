@@ -6,6 +6,8 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">create</i>Nome do Evento</span>
                     <input type="text" pInputText formControlName="nome">
+                    <app-mensagem *ngIf="eventoForm.get('nome')?.errors?.required
+                    && eventoForm.get('nome')?.touched" mensagem="Nome do Evento é obrigatório"></app-mensagem>
                 </div>
             </div>
 
@@ -13,6 +15,8 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data do Evento</span>
                     <p-calendar [disabledDays]="[0,6]" dateFormat="dd/mm/yy" formControlName="dataEvento" [readonlyInput]="true"></p-calendar>
+                    <app-mensagem *ngIf="eventoForm.get('dataEvento')?.errors?.required
+                    && eventoForm.get('dataEvento')?.touched" mensagem="Data do Evento é obrigatória"></app-mensagem>
                 </div>
             </div>
 
@@ -20,6 +24,8 @@
                 <div class="ui-g-6 ui-g-offset-3">
                     <span class="ui-inputgroup-addon"><i class="material-icons">attach_money</i>Valor</span>
                     <input type="number" pInputText formControlName="valor">
+                    <app-mensagem *ngIf="eventoForm.get('valor')?.errors?.required
+                    && eventoForm.get('valor')?.touched" mensagem="Valor é obrigatório"></app-mensagem>
                 </div>
             </div>
             <div class="ui-g-12">
@@ -34,9 +40,9 @@
                     <p-dropdown [options]="situacoes" formControlName="situacao" [filter]="true"></p-dropdown>
                 </div>
             </div>
-            <div class="ui-g-12">
-                <p-pickList [source]="todosUsuarios" [target]="usuariosSelecionados" sourceHeader="Todos Usuarios" targetHeader="Usuarios Selecionados" [responsive]="true" filterBy="label" dragdrop="true" sourceFilterPlaceholder="Procurar por nome" targetFilterPlaceholder="Procurar por nome"
-                    [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" [disabled]='modoCrud == 3'>
+            <div class="ui-g-12" *ngIf='modoCrud != 2'>
+                <p-pickList [source]="todosUsuarios" [target]="usuariosSelecionados" sourceHeader="Todos Participantes Cadastrados" targetHeader="Participantes Selecionados" [responsive]="true" filterBy="label" dragdrop="true" sourceFilterPlaceholder="Procurar por nome"
+                    targetFilterPlaceholder="Procurar por nome" [sourceStyle]="{'height':'200px'}" [targetStyle]="{'height':'200px'}" [disabled]='modoCrud == 3'>
                     <ng-template let-usuario pTemplate="item">
                         <div class="ui-helper-clearfix">
                             <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{usuario.label}}</div>
@@ -47,10 +53,10 @@
 
             <div class="ui-g-12" *ngIf='modoCrud != 3'>
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton type="button" label="Salvar" (click)="persistir()"></button>
+                    <button pButton type="button" label="{{getButton()}}" (click)="persistir()" [disabled]="!this.eventoForm.valid && modoCrud != 2"></button>
                 </div>
                 <div class="ui-g-2">
-                    <button pButton type="button" label="Cancelar" (click)="cancelarEvento()" class="ui-button-danger"></button>
+                    <button pButton type="button" label="CANCELAR" (click)="cancelarEvento()" class="ui-button-danger"></button>
                 </div>
             </div>
         </div>

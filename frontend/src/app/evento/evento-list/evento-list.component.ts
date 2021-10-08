@@ -18,23 +18,23 @@ export class EventoListComponent implements OnInit {
   eventos: EventoListagem[] = [];
   eventoBuscado: Evento;
   public isDialogVisible: boolean = false;
-  private modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE; 
+  trocaEventos: boolean = false;
+  private modoCrud: CrudOperationEnum = CrudOperationEnum.CREATE;
 
 
-  constructor(private service : EventoService, 
-              private router: Router, 
-              private mensagem: MessageService) { }
+  constructor(private service: EventoService,
+    private router: Router,
+    private mensagem: MessageService) { }
 
   ngOnInit(): void {
     this.buscarTodos();
   }
 
-  cadastrar(): void{
-    this.router.navigateByUrl('eventos/criacao')
+  public mostrarTrocar(): void {
+    this.trocaEventos = true;
   }
-
-  buscarTodos(): void{
-    this.service.buscarTodos().subscribe( res => {
+  buscarTodos(): void {
+    this.service.buscarTodos().subscribe(res => {
       this.eventos = res;
     })
   }
@@ -47,8 +47,8 @@ export class EventoListComponent implements OnInit {
 
   }
 
-  public adiarEvento(eventoId: number): void{
-    this.service.adiarEvento(eventoId).subscribe(() =>{
+  public adiarEvento(eventoId: number): void {
+    this.service.adiarEvento(eventoId).subscribe(() => {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
       this.buscarTodos();
     })
@@ -58,6 +58,13 @@ export class EventoListComponent implements OnInit {
     this.service.buscarPorId(eventoId).subscribe(res => {
       this.eventoBuscado = res
       this.showDialog(CrudOperationEnum.UPDATE);
+    })
+  }
+
+  public deletar(eventoId: number): void {
+    this.service.buscarPorId(eventoId).subscribe(res => {
+      this.eventoBuscado = res
+      this.showDialog(CrudOperationEnum.DELETE);
     })
   }
 

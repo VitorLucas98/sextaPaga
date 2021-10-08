@@ -23,10 +23,6 @@ export class UsuarioListComponent implements OnInit {
     this.buscarTodos();
   }
 
-  cadastrar(): void {
-    this.router.navigateByUrl('usuarios/criar')
-  }
-
   buscarTodos(): void {
     this.service.buscarTodos().subscribe(res => {
       this.usuarios = res;

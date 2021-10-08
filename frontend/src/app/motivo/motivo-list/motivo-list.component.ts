@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Motivo } from 'src/app/models/Motivo';
 import { MessageService } from 'primeng';
 import { Router } from '@angular/router';
+import { CrudOperationEnum } from 'src/app/enums/Crud-Operation.enum';
 
 @Component({
   selector: 'app-motivo-list',
@@ -12,26 +13,58 @@ import { Router } from '@angular/router';
 export class MotivoListComponent implements OnInit {
 
   motivos: Motivo[] = [];
+  motivoBuscado: Motivo;
+  public isDialogVisible: boolean = false;
+  private modoCrud: CrudOperationEnum = CrudOperationEnum.READ;
+  
   
 
-  constructor(private service : MotivoService, private router: Router,
-    private messageService: MessageService) { }
+  constructor(private service: MotivoService, private router: Router) { }
 
-  /*constructor(private service : MotivoService, private router: Router, private messageService: MessageService) { }
-*/
   ngOnInit(): void {
     this.buscarTodos();
   }
 
   cadastrar(): void{
-    this.router.navigateByUrl('motivos/criacao')
+    this.router.navigateByUrl('motivos/criar')
   }
 
-  buscarTodos(): void{
-    this.service.buscarTodos().subscribe( res => {
+  buscarTodos(): void {
+    this.service.buscarTodos().subscribe(res => {
       this.motivos = res;
-      console.log(this.motivos);
     })
+  }
+  
+  public visualizar(motivoId: number): void {
+    this.service.buscarPorId(motivoId).subscribe(res => {
+      this.motivoBuscado = res
+      this.showDialog(CrudOperationEnum.READ);
+    })
+
+  }
+
+  public editar(motivoId: number): void {
+    this.service.buscarPorId(motivoId).subscribe(res => {
+      this.motivoBuscado = res
+      this.showDialog(CrudOperationEnum.UPDATE);
+    })
+  }
+
+  public deletar(motivoId: number): void {
+    this.service.buscarPorId(motivoId).subscribe(res => {
+      this.motivoBuscado = res
+      this.showDialog(CrudOperationEnum.DELETE);
+    })
+  }
+
+
+  public getModoCrud(): CrudOperationEnum {
+    return this.modoCrud;
+  }
+
+  public showDialog(operacao: CrudOperationEnum): void {
+    this.modoCrud = operacao;
+    this.isDialogVisible = true;
   }
 
 }

@@ -5,7 +5,7 @@ import { EventoListComponent } from './evento-list/evento-list.component';
 
 const routes: Routes = [
   {path: '', component: EventoListComponent },
-  {path:'criacao', component: EventoCadastroComponent,data: {breadcrumb: 'criacao'} },
+  {path:'criar', component: EventoCadastroComponent,data: {breadcrumb: 'criar'} },
 ];
 
 
