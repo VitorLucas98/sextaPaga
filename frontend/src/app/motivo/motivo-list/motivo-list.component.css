@@ -12,6 +12,12 @@
     background-color: #fff;
 }
 
-td {
-    text-align: center;
+.btn-acoes {
+    display: flex;
+    justify-content: center;
 }
+
+i {
+    margin-right: .5rem;
+}
+

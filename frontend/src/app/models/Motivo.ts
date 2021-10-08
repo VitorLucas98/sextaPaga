@@ -1,12 +1,12 @@
 
-export class MotivoSelect{
-    value: number;
-    label: string;
+export class Motivo{
+    id?: number;
+    titulo: string;
+    descricao: string;
 }
 
-
-export class Motivo{
-    id?: any;
+export class MotivoListagem{
+    id?: number;
     titulo: string;
     descricao: string;
 }

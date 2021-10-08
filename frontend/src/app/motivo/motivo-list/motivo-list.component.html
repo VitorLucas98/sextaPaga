@@ -34,12 +34,22 @@
             </td>
  
             <td colspan="2">
-                <a>
-                    <i id="edit" class="material-icons">edit</i>
-                </a>
-                <a>
-                    <i id="delete" class="material-icons">visibility</i>
-                </a>
+                <div class="btn-acoes">
+                    <a (click)="editar(motivo.id)">
+                        <i id=" edit " class="material-icons">edit</i>
+                    </a>
+                    <a (click)="visualizar(motivo.id)">
+                        <i id="view " class="material-icons">visibility</i>
+                    </a>
+                    <a (click)="deletarMotivo(motivo.id)">
+                        <i id="delete" class="material-icons" >delete</i>
+                    </a>
+
+
+
+
+
+                </div>
             </td>
         </tr>
     </ng-template>
@@ -49,3 +59,7 @@
         </tr>
     </ng-template>
 </p-table>
+
+<p-dialog [(visible)]="isDialogVisible">
+    <app-motivo-cadastro [motivo]="motivoBuscado" [modoCrud]="getModoCrud()" *ngIf="isDialogVisible" (onCancel)='isDialogVisible = false' (novaBusca)='this.buscarTodos() '></app-motivo-cadastro>
+</p-dialog>
