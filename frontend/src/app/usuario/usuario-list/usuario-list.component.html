@@ -64,5 +64,5 @@
 </p-table>
 
 <p-dialog [(visible)]="isDialogVisible">
-    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]="getModoCrud()" *ngIf="isDialogVisible" (onCancel)='isDialogVisible = false'></app-usuario-cadastro>
+    <app-usuario-cadastro [usuario]="usuarioBuscado" [modoCrud]="getModoCrud()" *ngIf="isDialogVisible" (onCancel)='isDialogVisible = false' (novaBusca)='this.buscarTodos()'></app-usuario-cadastro>
 </p-dialog>

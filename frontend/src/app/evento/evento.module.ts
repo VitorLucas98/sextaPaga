@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EventoRoutingModule } from './evento-routing.module';
 import { EventoCadastroComponent } from './evento-cadastro/evento-cadastro.component';
 import { EventoListComponent } from './evento-list/evento-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EventoListComponent } from './evento-list/evento-list.component';
   imports: [
     CommonModule,
     EventoRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class EventoModule { }

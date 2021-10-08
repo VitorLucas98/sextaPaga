@@ -50,7 +50,12 @@
                 <div class="ui-g-3">
                     <span class="ui-inputgroup-addon"><i class="pi pi-calendar"></i>Data de Nascimento</span>
                     <p-calendar [disabledDates]="" [disabledDays]="[0,6]" dateFormat="dd/mm/yy" formControlName='dataNascimento' [readonlyInput]="true"></p-calendar>
-
+                </div>
+            </div>
+            <div class="ui-g-12" *ngIf='modoCrud != 0'>
+                <div class="ui-g-3 ui-g-offset-3">
+                    <span class="ui-inputgroup-addon">Ativo</span>
+                    <p-inputSwitch formControlName="status"></p-inputSwitch>
                 </div>
             </div>
 
