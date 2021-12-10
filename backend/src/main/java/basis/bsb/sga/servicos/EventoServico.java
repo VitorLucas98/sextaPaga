@@ -9,6 +9,7 @@ import basis.bsb.sga.servicos.excecoes.ValidadorExcecoes;
 import basis.bsb.sga.servicos.filtros.EventoFiltro;
 import basis.bsb.sga.servicos.mappers.EventoMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +67,14 @@ public class EventoServico {
         ev1.setDataEvento(ev2.getDataEvento());
         ev2.setDataEvento(dataAux);
         return mapper.toDto(repositorio.saveAll(Arrays.asList(ev1, ev2)));
+    }
+
+    public void deletar(Long id){
+        try {
+            repositorio.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ObjetoNaoEncontrado("Evento não encontrado!");
+        }
     }
 
     public void checkUsuario(Usuario usuario){

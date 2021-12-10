@@ -1,9 +1,5 @@
-<div class="create">
-    <p-button (click)="cadastrar()" class="btn-create" label="CRIAR EVENTO"></p-button>
-</div>
-
 <p-table #dt [value]="eventos" dataKey="id" styleClass="ui-table-customers" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} eventos"
-    [filterDelay]="0" [globalFilterFields]="['name','dateEvento','valor', 'representative.name', 'representative.name']">
+    [filterDelay]="0" [globalFilterFields]="['nome','dateEvento','valor', 'motivo.label', 'situacao.label']">
     <ng-template pTemplate="caption">
         LISTA DE EVENTOS
         <div class="ui-table-globalfilter-container">
@@ -59,7 +55,12 @@
                     <a>
                         <i id="view" class="material-icons" (click)="visualizar(evento.id)">visibility</i>
                     </a>
-                    <button pButton type="button" label="ADIAR EVENTO" (click)="adiarEvento(evento.id)" class="ui-button-raised ui-button-warning"></button>
+                    <a>
+                        <i id="adiar" class="material-icons" (click)="adiarEvento(evento.id)">event_busy</i>
+                    </a>
+                    <a>
+                        <i id="delete" class="material-icons" (click)="deletar(evento.id)">delete</i>
+                    </a>
                 </div>
             </td>
         </tr>

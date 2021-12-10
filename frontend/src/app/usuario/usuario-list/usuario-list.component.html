@@ -1,9 +1,5 @@
-<div class="create">
-    <p-button (click)="cadastrar()" class="btn-create" label="CRIAR NOVO USUÁRIO"></p-button>
-</div>
-
 <p-table #dt [value]="usuarios" dataKey="id" styleClass="ui-table-customers" [rowHover]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [paginator]="true" currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuários"
-    [filterDelay]="0" [globalFilterFields]="['name','country.name','representative.name','status']">
+    [filterDelay]="0" [globalFilterFields]="['nome','email','cargo.label','status']">
     <ng-template pTemplate="caption">
         LISTA DE USUÁRIOS
         <div class="ui-table-globalfilter-container">
@@ -12,14 +8,14 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th colspan="2" pSortableColumn="name">NOME
-                <p-sortIcon field="name"></p-sortIcon>
+            <th colspan="2" pSortableColumn="nome">NOME
+                <p-sortIcon field="nome"></p-sortIcon>
             </th>
-            <th colspan="3" pSortableColumn="country.name">EMAIL
-                <p-sortIcon field="country.name"></p-sortIcon>
+            <th colspan="3" pSortableColumn="email">EMAIL
+                <p-sortIcon field="email"></p-sortIcon>
             </th>
             <th colspan="2" pSortableColumn="cargo.label">CARGO
-                <p-sortIcon field="representative.name"></p-sortIcon>
+                <p-sortIcon field="cargo.label"></p-sortIcon>
             </th>
             <th colspan="2" pSortableColumn="status">STATUS
                 <p-sortIcon field="status"></p-sortIcon>

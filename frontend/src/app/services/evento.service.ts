@@ -31,11 +31,14 @@ export class EventoService {
     return this.http.put<Evento>(url, evento);
   }
 
+  deletar( id : number): Observable<void>{
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<void>(url);
+  }
+
   adiarEvento( id : number): Observable<void>{
     const url = `${this.baseUrl}/adiar/${id}`;
     return this.http.put<void>(url, null);
   }
-
-
 
 }

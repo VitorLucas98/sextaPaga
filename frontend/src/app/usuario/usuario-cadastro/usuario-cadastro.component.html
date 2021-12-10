@@ -61,10 +61,10 @@
 
             <div class="ui-g-12" *ngIf='modoCrud != 3'>
                 <div class="ui-g-2 ui-g-offset-3">
-                    <button pButton (click)="persistir()" label="Salvar"></button>
+                    <button pButton (click)="persistir()" label="{{getButton()}}" [disabled]="!this.usuarioForm.valid && modoCrud != 2"></button>
                 </div>
                 <div class="ui-g-2">
-                    <button pButton type="button" label="Cancelar" (click)="cancelar()" class="ui-button-danger"></button>
+                    <button pButton type="button" label="CANCELAR" (click)="cancelar()" class="ui-button-danger"></button>
                 </div>
             </div>
         </div>

@@ -97,6 +97,12 @@ export class UsuarioCadastroComponent implements OnInit {
       case CrudOperationEnum.READ: return 'VISUALIZAÇÃO DE USUÁRIO';
     }
   }
+  public getButton(): string {
+    switch (this.modoCrud) {
+      case CrudOperationEnum.CREATE: return 'CADASTRAR';
+      case CrudOperationEnum.UPDATE: return 'ATUALIZAR';
+    }
+  }
 
   public persistir(): Observable<Usuario> {
     switch (this.modoCrud) {
@@ -116,6 +122,9 @@ export class UsuarioCadastroComponent implements OnInit {
       this.mensagem.add({ severity: 'success', summary: MessagemUtils.TITULO_SUCESSO, detail: MessagemUtils.MENSAGEM_DADOS_SALVOS });
       this.router.navigateByUrl('usuarios')
       this.onCancel.emit();
+    }, erros => {
+      this.mensagem.add({ severity: 'error', summary: erros.error.erro, detail: erros.error.mensagem });
+      console.log(erros);
     })
   }
 
