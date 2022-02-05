@@ -1,0 +1,12 @@
+span {
+    display: flex;
+    align-items: center;
+}
+
+i {
+    margin-right: .5rem;
+}
+
+h1 {
+    text-align: center;
+}

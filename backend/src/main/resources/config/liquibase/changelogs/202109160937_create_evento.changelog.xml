@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet id="202109160937" author="francisco.doglas">
+        <createTable tableName="evento">
+            <column name="ID" type="bigint" autoIncrement="true" remarks="id da tabela evento">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="NOME" type="varchar(50)" remarks="nome do evento">
+                <constraints  nullable="false"/>
+            </column>
+            <column name="DATA_EVENTO" type="DATE" remarks="data da realizacao do evento">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VALOR" type="numeric(10,2)" remarks="valor a ser gasto no evento">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_situacao" type="bigint" remarks="chave estrangeira que faz referencia a tabela situacao"/>
+            <column name="id_motivo" type="bigint" remarks="chave estrangeira que faz referencia a tabela motivo"/>
+        </createTable>
+    </changeSet>
+
+    <!--  ChangeSet para as foreignKey ! -->
+    <changeSet id="202109160939" author="francisco.doglas">
+        <addForeignKeyConstraint baseTableName="evento"
+                                 baseColumnNames="id_situacao"
+                                 constraintName="FK_SITUACAO_EVENTO"
+                                 referencedTableName="situacao"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="202109160940" author="francisco.doglas">
+        <addForeignKeyConstraint baseTableName="evento"
+                                 baseColumnNames="id_motivo"
+                                 constraintName="FK_MOTIVO_EVENTO"
+                                 referencedTableName="motivo"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+</databaseChangeLog>
+
